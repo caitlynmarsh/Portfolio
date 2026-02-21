@@ -268,11 +268,11 @@ export function Page11DarkMesh() {
       {/* Philosophy Section - Dark version */}
       <PhilosophySection />
 
-      {/* Mini About Section */}
+      {/* Mini About Section - initial visible so content shows without relying on whileInView */}
       <section id="about" className="py-32 px-8 md:px-16 lg:px-24 border-white/10 border-t-0">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="grid md:grid-cols-[2fr_3fr] gap-12 items-center"
@@ -289,7 +289,7 @@ export function Page11DarkMesh() {
             {/* Text - Right Column */}
             <div className="space-y-6">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
@@ -299,7 +299,7 @@ export function Page11DarkMesh() {
               </motion.h2>
               
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
@@ -311,7 +311,7 @@ export function Page11DarkMesh() {
 
               {/* Buttons */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
@@ -637,15 +637,15 @@ function DetailedColumnsLayout() {
 
   return (
     <div className="-mt-[calc(15vh+100px)] md:-mt-[calc(20vh+100px)] px-8 md:px-16 lg:px-24">
-      {/* Mobile: single column */}
+      {/* Mobile: single column - initial visible so cards show without relying on whileInView */}
       <div className="flex justify-end md:hidden">
         <div className="w-full flex flex-col gap-5">
           {allCards.map((study, index) => (
             <motion.div
               key={`mobile-detail-${index}`}
-              initial={{ opacity: 0, y: 40 }}
-              animate={index === 0 ? { opacity: 1, y: 0 } : undefined}
-              whileInView={index > 0 ? { opacity: 1, y: 0 } : undefined}
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: "easeOut" }}
             >
@@ -663,9 +663,9 @@ function DetailedColumnsLayout() {
             {leftColumn.map((study, index) => (
               <motion.div
                 key={`left-detail-${index}`}
-                initial={{ opacity: 0, y: 40 }}
-                animate={index === 0 ? { opacity: 1, y: 0 } : undefined}
-                whileInView={index > 0 ? { opacity: 1, y: 0 } : undefined}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: "easeOut" }}
               >
@@ -679,9 +679,9 @@ function DetailedColumnsLayout() {
             {rightColumn.map((study, index) => (
               <motion.div
                 key={`right-detail-${index}`}
-                initial={{ opacity: 0, y: 40 }}
-                animate={index === 0 ? { opacity: 1, y: 0 } : undefined}
-                whileInView={index > 0 ? { opacity: 1, y: 0 } : undefined}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1, ease: "easeOut" }}
               >
@@ -1090,7 +1090,7 @@ function PhilosophySection() {
 
       <div className="mt-24 px-8 md:px-16 lg:px-24 text-center">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="font-serif text-2xl md:text-3xl text-white/70 max-w-2xl mx-auto"
