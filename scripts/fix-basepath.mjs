@@ -11,7 +11,9 @@ const OUT_DIR = path.join(process.cwd(), 'out');
 const BASE_PATH = '/Portfolio';
 const PLACEHOLDER = '__BASE_PATH_PLACEHOLDER__';
 
-const EXTENSIONS = new Set(['.html', '.js', '.css', '.json']);
+// Only rewrite HTML and CSS. Do NOT rewrite .js: it breaks code (e.g. '"/"' becomes '"/Portfolio/"').
+// Next.js build with basePath/assetPrefix already emits correct paths in JS bundles.
+const EXTENSIONS = new Set(['.html', '.css']);
 
 function rewriteContent(content) {
   // Avoid double-prefixing: temporarily replace existing base path

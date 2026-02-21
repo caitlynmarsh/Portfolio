@@ -188,7 +188,7 @@ export function Page11DarkMesh() {
         {/* Navigation */}
         <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8">
           <motion.span
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-white/90 text-sm uppercase tracking-widest"
@@ -196,7 +196,7 @@ export function Page11DarkMesh() {
             Caitlyn Marsh
           </motion.span>
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex gap-8"
@@ -215,7 +215,7 @@ export function Page11DarkMesh() {
           activeLayout === "detailed" ? "min-h-[calc(100vh-200px)]" : "min-h-[calc(100vh-120px)]"
         }`}>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-serif text-5xl md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
@@ -223,7 +223,7 @@ export function Page11DarkMesh() {
             {"Hi! I'm Caitlyn"}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl"
