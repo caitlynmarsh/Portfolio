@@ -390,7 +390,7 @@ function CaseStudiesSection({
   const hasOverlap = isPeek || isColumns || isDetailed
 
   return (
-    <section id="work" className={hasOverlap ? "pt-0 pb-24" : "py-24"}>
+    <section id="work" className={`relative z-10 ${hasOverlap ? "pt-0 pb-24" : "py-24"}`}>
       {/* Header - hidden for layouts that overlap hero */}
       {!hasOverlap && (
         <div className="px-8 md:px-16 lg:px-24 mb-16">

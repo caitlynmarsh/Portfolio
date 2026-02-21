@@ -594,9 +594,9 @@ export default function CaseStudyContent({ studyId }: { studyId: string }) {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content - initial opacity 1 so content is visible before Framer Motion runs (e.g. static export / slow JS) */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
@@ -633,7 +633,7 @@ function HeroFadeLayout({
       <div className="relative -mt-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-6"
