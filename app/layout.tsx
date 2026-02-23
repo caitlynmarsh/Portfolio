@@ -8,25 +8,14 @@ const _playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-serif
 const _inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'Design Leadership Portfolio',
-  description: 'Portfolio showcasing design leadership and product thinking',
+  title: 'Caitlyn Marsh | Product Design Leader',
+  description: 'Caitlyn is a product design leader with 10+ years of experience crafting digital experiences that are both functional and delightful.',
   generator: 'v0.app',
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: '/apple-icon.png',
+    apple: '/icon.svg',
   },
 }
 

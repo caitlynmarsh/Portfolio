@@ -12,6 +12,7 @@ const caseStudyData = {
     subtitle: "Creating a clearer, more scalable foundation for Asurion Experts' daily work",
     role: "Hybrid (Sr Manager, Product Design + IC)",
     team: "2 designers",
+    heroGradient: { from: "#43035B", to: "#AE03A8" },
     sections: [
       {
         heading: "Field app outgrew its MVP and experts felt it every day",
@@ -110,6 +111,7 @@ const caseStudyData = {
     subtitle: "Improving on-time arrival through flow design, not constraints",
     role: "Principal Designer (IC)",
     platform: "Mobile app",
+    heroGradient: { from: "#0d3d56", to: "#1a5f7a" },
     sections: [
       {
         heading: "On-time arrival wasn't just about time — it was about trust",
@@ -203,6 +205,7 @@ const caseStudyData = {
     role: "Senior Manager, Product Design",
     team: "1 designer",
     platform: "Mobile app",
+    heroGradient: { from: "#3d2c0d", to: "#7a5c1a" },
     sections: [
       {
         heading: "Sales success depended on skills many experts didn't sign up for",
@@ -315,6 +318,7 @@ const caseStudyData = {
     subtitle: "Bridging teams and systems to create a seamless end-to-end experience",
     role: "Senior Manager, Product Design + Lead Designer",
     platform: "Mobile app + Desktop app",
+    heroGradient: { from: "#1e2d4d", to: "#3d5a80" },
     sections: [
       {
         heading: "Nothing about this experience was end to end, even though the work was",
@@ -420,6 +424,7 @@ const caseStudyData = {
     subtitle: "Building an iOS app to support consistent equine rehabilitation",
     role: "Designer & Developer",
     platform: "iOS app",
+    heroGradient: { from: "#0d3d2a", to: "#1a5c45" },
     sections: [
       {
         heading: "Rehab plans were simple on paper and hard in real life",
@@ -618,19 +623,29 @@ function HeroFadeLayout({
 }) {
   return (
     <div className="relative">
-      {/* Hero image section with gradient fade */}
-      <div className="relative h-[45vh] md:h-[50vh] overflow-hidden">
-        {/* Image placeholder with background */}
-        <div className="absolute inset-0 bg-white/5 flex items-center justify-center">
-          <span className="font-serif text-[15rem] md:text-[20rem] text-white/10">0{study.id}</span>
-        </div>
-        
-        {/* Gradient fade at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/80 to-transparent" />
+      {/* Hero gradient section — shorter height, per-study colors */}
+      <div className="relative h-[28vh] md:h-[32vh] overflow-hidden">
+        {/* Per-case-study gradient background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: study.heroGradient
+              ? `linear-gradient(to bottom, ${study.heroGradient.from}, ${study.heroGradient.to})`
+              : "linear-gradient(to bottom, #43035B, #AE03A8)",
+          }}
+        />
+
+        {/* Gradual fade from top into page background (starts near top, full height) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, transparent 0%, rgba(13,17,23,0.3) 35%, rgba(13,17,23,0.85) 70%, #0d1117 100%)",
+          }}
+        />
       </div>
 
-      {/* Content overlapping the image fade */}
-      <div className="relative -mt-32 px-8 md:px-16 lg:px-24">
+      {/* Content overlapping the fade (closer to top) */}
+      <div className="relative -mt-24 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl">
           <motion.div
             initial={{ opacity: 1, y: 0 }}

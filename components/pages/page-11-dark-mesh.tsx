@@ -305,7 +305,7 @@ export function Page11DarkMesh() {
                 transition={{ delay: 0.2 }}
                 className="text-lg md:text-xl text-white/70 leading-relaxed"
               >
-                As a <strong className="text-white font-semibold">Senior Manager, Product Design at Asurion</strong>, I lead teams creating enterprise tools that support millions of expert-led experiences. I focus on clarity, craft, and designing for real-world complexity, with the belief that great design should quietly feel a little like magic.
+                As a <strong className="text-white font-semibold">Senior Manager, Product Design at Asurion</strong>, I lead teams creating enterprise tools that support millions of expert-led experiences every year. I focus on clarity, craft, and designing for real-world complexity, with the belief that great design should feel a little like magic.
               </motion.p>
               
 
