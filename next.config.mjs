@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production'
+
 const nextConfig = {
   output: 'export', // Enable static export
-  basePath: '/Portfolio', // Required for GitHub Pages (site is at username.github.io/Portfolio/)
-  assetPrefix: '/Portfolio', // Ensure _next/ assets load from subpath (static export may not apply basePath to HTML)
+  // Only use basePath for production build (GitHub Pages). Dev server serves at /
+  ...(isProd && {
+    basePath: '/Portfolio',
+    assetPrefix: '/Portfolio',
+  }),
   typescript: {
     ignoreBuildErrors: true,
   },
