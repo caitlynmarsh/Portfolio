@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev --hostname 127.0.0.1",
+    "preview": "node scripts/serve-preview.mjs",
     "lint": "eslint .",
     "start": "next start"
   },

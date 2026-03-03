@@ -21,6 +21,7 @@ const caseStudies = [
     quote: "The new experience fundamentally changed how our users think about their money.",
     imagePosition: "left" as const,
     role: "Sr Manager, Product Design",
+    image: "/Portfolio/field-app-hero.png",
   },
   {
     id: 2,
@@ -455,8 +456,6 @@ function PeekCard({ study, index, aspectClass }: { study: (typeof caseStudies)[0
         <h3 className="font-serif text-lg md:text-xl lg:text-2xl text-white">{study.title}</h3>
       </div>
 
-      {/* Small indicator */}
-      <div className="absolute top-4 right-4 md:top-6 md:right-6 w-2 h-2 rounded-full bg-[#5eead4]/50 group-hover:bg-[#5eead4] transition-colors duration-300" />
     </Link>
   )
 }
@@ -622,8 +621,6 @@ function ColumnsCard({ study, index }: { study: (typeof caseStudies)[0]; index: 
         <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-white">{study.title}</h3>
       </div>
 
-      {/* Small indicator */}
-      <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-[#5eead4] md:bg-[#5eead4]/50 md:group-hover:bg-[#5eead4] transition-colors duration-300" />
     </Link>
   )
 }
@@ -699,15 +696,21 @@ function DetailedCard({ study, index }: { study: (typeof caseStudies)[0]; index:
   return (
     <Link href={`/case-study/${study.id}`} className="group relative rounded-lg overflow-hidden border border-white/10 cursor-pointer flex flex-col bg-white/5 block">
       {/* Image area at top - separate from text */}
-      <div className="relative aspect-[4/3] bg-white/5 flex-shrink-0">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-serif text-[8rem] md:text-[10rem] text-white/5 group-hover:text-[#5eead4]/10 transition-colors duration-500">
-            0{index + 1}
-          </span>
-        </div>
+      <div className="relative aspect-[4/3] bg-white/5 flex-shrink-0 overflow-hidden">
+        {"image" in study && study.image ? (
+          <img
+            src={study.image}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-serif text-[8rem] md:text-[10rem] text-white/5 group-hover:text-[#5eead4]/10 transition-colors duration-500">
+              0{index + 1}
+            </span>
+          </div>
+        )}
 
-        {/* Small indicator */}
-        <div className="absolute top-5 right-5 w-2 h-2 rounded-full bg-[#5eead4]/50 group-hover:bg-[#5eead4] transition-colors duration-300" />
       </div>
 
       {/* Text section - below image on card background */}
@@ -767,9 +770,17 @@ function EditorialCase({ study, index }: { study: (typeof caseStudies)[0]; index
       <div className="w-full md:w-1/2 relative">
         <motion.div style={{ y: imageY }} className="sticky top-24 mx-8 md:mx-16">
           <div className="aspect-[3/4] max-h-[70vh] bg-white/5 rounded-lg overflow-hidden border border-white/10">
-            <div className="w-full h-full bg-gradient-to-br from-[#5eead4]/10 to-[#0d1117] flex items-center justify-center">
-              <span className="font-serif text-9xl text-white/10">0{index + 1}</span>
-            </div>
+            {"image" in study && study.image ? (
+              <img
+                src={study.image}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-[#5eead4]/10 to-[#0d1117] flex items-center justify-center">
+                <span className="font-serif text-9xl text-white/10">0{index + 1}</span>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -831,8 +842,6 @@ function MinimalCardsLayout() {
             <h3 className="font-serif text-2xl lg:text-3xl text-white">{study.title}</h3>
           </div>
 
-          {/* Small indicator */}
-          <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-[#5eead4]/50 group-hover:bg-[#5eead4] transition-colors duration-300" />
         </motion.div>
       ))}
     </div>

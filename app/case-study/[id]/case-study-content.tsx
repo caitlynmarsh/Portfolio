@@ -1,7 +1,59 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { useCarousel } from "@/components/ui/carousel"
+
+function QuotesCarouselControls({ count }: { count: number }) {
+  const { api, scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  useEffect(() => {
+    if (!api) return
+    const onSelect = () => setSelectedIndex(api.selectedScrollSnap())
+    onSelect()
+    api.on("select", onSelect)
+    return () => {
+      api.off("select", onSelect)
+    }
+  }, [api])
+  return (
+    <div className="flex items-center justify-center gap-4 mt-6">
+      <CarouselPrevious
+        className="!static !left-0 !top-0 !-translate-x-0 !-translate-y-0 border-white/20 bg-white/5 hover:bg-white/10 text-white hover:text-white disabled:opacity-40"
+        variant="outline"
+        size="icon"
+      />
+      <div className="flex items-center gap-2">
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => api?.scrollTo(i)}
+            aria-label={`Go to quote ${i + 1}`}
+            className={`rounded-full transition-all duration-200 ${
+              i === selectedIndex
+                ? "bg-[#5eead4] w-2.5 h-2.5"
+                : "bg-white/30 hover:bg-white/50 w-2 h-2"
+            }`}
+          />
+        ))}
+      </div>
+      <CarouselNext
+        className="!static !right-0 !top-0 !translate-x-0 !-translate-y-0 border-white/20 bg-white/5 hover:bg-white/10 text-white hover:text-white disabled:opacity-40"
+        variant="outline"
+        size="icon"
+      />
+    </div>
+  )
+}
 
 const caseStudyData = {
   "1": {
@@ -10,15 +62,17 @@ const caseStudyData = {
     year: "2025",
     title: "Redesigning Field app to reduce friction and unlock scale",
     subtitle: "Creating a clearer, more scalable foundation for Asurion Experts' daily work",
-    role: "Hybrid (Sr Manager, Product Design + IC)",
+    role: "Sr Manager, Product Design + Lead Designer",
     team: "2 designers",
+    platform: "Mobile app",
     heroGradient: { from: "#43035B", to: "#AE03A8" },
     sections: [
       {
         heading: "Field app outgrew its MVP and experts felt it every day",
-        content: "Field supports Asurion's in-person expert experience—from viewing daily routes to delivering and setting up replacement phones the same day. As the service scaled, the app's structure didn't. What began as an MVP was now limiting discoverability, onboarding, and future growth.",
+        content: "Field app supports Asurion's in-person same-day delivery and expert setup program—from viewing their daily routes to guiding them through facilitating a 5-star customer experience. As the service scaled, the app's structure didn't. What began as an MVP was now limiting discoverability, onboarding, and future growth.",
         visualNote: "Large contextual app image or abstract background",
         hasImage: true,
+        image: "/Portfolio/field-app-hero.png",
       },
       {
         heading: "Why this mattered",
@@ -43,24 +97,7 @@ const caseStudyData = {
         ],
         visualNote: "Old app entry state + homepage junk drawer with light annotation",
         hasImage: true,
-      },
-      {
-        heading: "Scaling the product meant rethinking the structure, not just adding more screens",
-        content: "Experts already juggle inventory, routes, customers, and timing. Every extra decision slows them down. At the same time, the business needed space to grow — a way to introduce global features without hiding them or overwhelming the experience.",
-        hasImage: false,
-      },
-      {
-        heading: "I owned the architecture and led the team building within it",
-        content: "I worked as a hybrid IC and design manager, overseeing two designers while directly owning the information architecture, bottom navigation, and homepage definition. In parallel, I ensured multiple designers building within the new system stayed visually aligned and structurally consistent.",
-        hasImage: false,
-      },
-      {
-        heading: "A focused homepage beats a busy one, especially at the start of the day",
-        content: "Early in the project, we were asked to make the beginning-of-day experience more content-heavy. Based on how experts actually work, I pushed back.",
-        additionalContent: "Experts don't have time to parse non-urgent information first thing in the morning. Adding more content would have slowed them down, not helped them. Instead, we designed a homepage that prioritized orientation and focus — while leaving room to scale over time.",
-        quote: "Reduce cognitive load when pressure is highest.",
-        visualNote: "Early concept vs final homepage highlighting what was intentionally not shown",
-        hasImage: true,
+        image: "/Portfolio/field-app-old-homepage.png",
       },
       {
         heading: "Designing an IA that could scale",
@@ -68,7 +105,16 @@ const caseStudyData = {
         additionalContent: "The resulting IA balanced immediate needs with future flexibility, while leaning on patterns experts already understood from everyday apps.",
         visualNote: "Simplified IA diagram and before/after navigation comparison",
         hasImage: true,
+        image: "/Portfolio/field-app-ia-diagram.png",
       },
+      
+      {
+        heading: "I owned the architecture and led the team building within it",
+        content: "I worked in a player/coach role on this project, both as a Sr Manager overseeing two designers while also spending a lot of time in Figma directly collaborating with them on the designs. I owned the information architecture, bottom navigation, and homepage definition. I also ensured multiple designers building within the new system stayed visually aligned and structurally consistent.",
+        additionalContent: "I also worked closed with our Product partners to get this work officially prioritized and added to the roadmap by communicating the potential value to both experts and the business.",
+        hasImage: false,
+      },
+      
       {
         heading: "When most users are new, clarity isn't optional",
         stats: [
@@ -85,14 +131,18 @@ const caseStudyData = {
         additionalContent: "Those standards were later added to the company-wide system, making dark mode reusable beyond Field.",
         visualNote: "Dark mode screens in situ with token or color usage callout",
         hasImage: true,
+        image: "/Portfolio/field-app-dark-mode.gif",
+        imageAutoplayLoop: true,
       },
       {
         heading: "The new structure earned trust — without requiring training",
         content: "Despite a user base known for skepticism toward change, feedback was overwhelmingly positive. Experts intuitively understood where to find things, even though the app had fundamentally changed. For the team, the new architecture unlocked future development and reduced friction in shipping new features.",
         quotes: [
-          "This is actually way better than I expected.",
-          "Finally feels like a modern app.",
-          "I can actually find what I need now."
+          "I definitely like it. Looks a lot better and I can find things a lot better. It's been great so far! — Expert in Charlotte, NC",
+          "I like the new changes. Everything's in one place you don't have to go look for anything. Nice work! — Expert in Nashville, TN",
+          "I really like the new design. It definitely is an upgrade, and I love the leaderboard because it shows us where we are at. — Expert in Denver, CO",
+          "I absolutely love the new Field app. Looks up to date! Like the colors and bold heading. Feels more modern and interactive. — Expert in Charlotte, NC",
+          "It's easy to use and a sleeker look. It is aesthetically pleasing while still being functional. I also think it has a better flow. — Expert in Dallas, TX",
         ],
         hasImage: false,
       },
@@ -727,19 +777,49 @@ function HeroFadeLayout({
             )}
             
             {section.quotes && (
-              <div className="grid md:grid-cols-3 gap-6">
-                {section.quotes.map((quote, j) => (
-                  <div key={j} className="bg-white/5 border border-white/10 rounded-lg p-6">
-                    <p className="text-sm text-white/70 italic">"{quote}"</p>
-                  </div>
-                ))}
+              <div className="relative w-full">
+                <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                  <CarouselContent className="-ml-0 gap-4">
+                    {section.quotes.map((quote, j) => (
+                      <CarouselItem key={j} className="pl-4 pr-4 basis-[88%] min-w-0 shrink-0 md:basis-[90%]">
+                        <div className="bg-white/5 border border-white/10 rounded-xl px-6 py-8 md:px-10 md:py-10">
+                          <p className="text-lg md:text-xl lg:text-2xl font-serif text-white/90 italic leading-relaxed">
+                            {quote.includes(" — ") ? (
+                              <>
+                                "{quote.split(" — ")[0]}"
+                                <br />
+                                <span className="block mt-3 text-sm md:text-base font-sans not-italic text-white/60">
+                                  {quote.split(" — ")[1]}
+                                </span>
+                              </>
+                            ) : (
+                              `"${quote}"`
+                            )}
+                          </p>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <QuotesCarouselControls count={section.quotes.length} />
+                </Carousel>
               </div>
             )}
             
             {section.hasImage && (
-              <div className="aspect-[16/10] bg-white/5 rounded-lg flex flex-col items-center justify-center border border-white/10">
-                <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote}</p>
+              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${"image" in section && section.image ? "w-full" : "aspect-[16/10]"}`}>
+                {"image" in section && section.image ? (
+                  <img
+                    src={section.image}
+                    alt=""
+                    className="w-full h-auto block max-w-full"
+                    loading={"imageAutoplayLoop" in section && section.imageAutoplayLoop ? "eager" : "lazy"}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote}</p>
+                  </div>
+                )}
               </div>
             )}
           </div>
