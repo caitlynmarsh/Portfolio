@@ -66,24 +66,46 @@ const caseStudyData = {
     team: "2 designers",
     platform: "Mobile app",
     heroGradient: { from: "#43035B", to: "#AE03A8" },
+    heroImage: "/Portfolio/placeholder.svg",
+    problem: {
+      content: "The Asurion Field app had outgrown its 2019 MVP foundation. Its architecture buried features and blocked the business from quickly scaling new capabilities. 1,500 experts relied on it daily to complete ~1.2M same-day delivery jobs per year — yet adoption of new features was low and tech debt made iteration increasingly costly and slow.",
+    },
+    solution: {
+      content: "I led a structural redesign of the app's information architecture, introducing a homepage and bottom navigation system, and reorganizing the experience around expert workflows rather than system logic.",
+    },
+    impact: {
+      content: "",
+      subsections: [
+        {
+          subheading: "",
+          points: [
+            "Improved operational efficiency at national scale",
+            "Training time reduced from 3 days to <1 day",
+            "Reduced reliance on coaches and help desk for manual support",
+            "Increased feature velocity and positioned for long-term tech debt reduction",
+          ],
+        },
+      ],
+    },
     sections: [
       {
-        heading: "Field app outgrew its MVP and experts felt it every day",
-        content: "Field app supports Asurion's in-person same-day delivery and expert setup program—from viewing their daily routes to guiding them through facilitating a 5-star customer experience. As the service scaled, the app's structure didn't. What began as an MVP was now limiting discoverability, onboarding, and future growth.",
-        visualNote: "Large contextual app image or abstract background",
+        eyebrow: "Context",
+        heading: "Field app in the hands of experts",
+        content: "Field app is the primary tool for Asurion Experts—same-day delivery and setup—from viewing their daily routes to facilitating a 5-star customer experience. As the service scaled, the app's structure didn't keep up.",
         hasImage: true,
         image: "/Portfolio/field-app-hero.png",
       },
       {
-        heading: "Why this mattered",
-        content: "As features accumulated, they were placed wherever space allowed — often buried behind menus or hidden behind unfamiliar navigation. For experts, this meant higher cognitive load and longer onboarding. For the business, it meant shipping features without confidence they'd ever be found.",
+        eyebrow: "The challenge",
+        heading: "Why this mattered for experts and the business",
+        content: "For experts, the result was high cognitive load during already stressful, time-sensitive days; new features were easy to miss; and learning the app required heavy training. For the business, there was no clear place to add new global features, discoverability made it hard to measure feature impact, and scaling the service meant rethinking the app's core structure.",
         subsections: [
           {
             subheading: "For experts",
             points: [
               "High cognitive load during already stressful, time-sensitive days",
               "New features were easy to miss",
-              "Learning the app required heavy training"
+              "Learning the app required heavy training",
             ]
           },
           {
@@ -91,50 +113,49 @@ const caseStudyData = {
             points: [
               "No clear place to add new global features",
               "Discoverability issues made it hard to measure feature impact",
-              "Scaling the service meant rethinking the app's core structure"
+              "Scaling the service meant rethinking the app's core structure",
             ]
           }
         ],
-        visualNote: "Old app entry state + homepage junk drawer with light annotation",
         hasImage: true,
         image: "/Portfolio/field-app-old-homepage.png",
       },
       {
+        eyebrow: "Approach",
         heading: "Designing an IA that could scale",
-        content: "We audited the existing app, mapped upcoming roadmap features, and paired usage data with expert and stakeholder input. The goal wasn't just to fix discoverability — it was to create a structure that could grow without constantly relearning the app.",
-        additionalContent: "The resulting IA balanced immediate needs with future flexibility, while leaning on patterns experts already understood from everyday apps.",
-        visualNote: "Simplified IA diagram and before/after navigation comparison",
+        content: "We audited the existing app, mapped upcoming roadmap features, and paired usage data with expert and stakeholder input. The resulting IA balanced immediate needs with future flexibility, while leaning on patterns experts already understood from everyday apps.",
         hasImage: true,
         image: "/Portfolio/field-app-ia-diagram.png",
       },
-      
       {
+        eyebrow: "Role",
         heading: "I owned the architecture and led the team building within it",
-        content: "I worked in a player/coach role on this project, both as a Sr Manager overseeing two designers while also spending a lot of time in Figma directly collaborating with them on the designs. I owned the information architecture, bottom navigation, and homepage definition. I also ensured multiple designers building within the new system stayed visually aligned and structurally consistent.",
-        additionalContent: "I also worked closed with our Product partners to get this work officially prioritized and added to the roadmap by communicating the potential value to both experts and the business.",
+        content: "I worked in a player/coach role, both as Sr Manager overseeing two designers and spending significant time in Figma collaborating with them. I owned the information architecture, bottom navigation, and homepage definition, and ensured multiple designers building within the new system stayed visually aligned and structurally consistent.",
+        additionalContent: "I also worked closely with Product partners to get this work officially prioritized and added to the roadmap by communicating the potential value to both experts and the business.",
         hasImage: false,
       },
-      
       {
+        eyebrow: "Constraints",
         heading: "When most users are new, clarity isn't optional",
+        content: "With annual turnover around 70% and average tenure around 60 days, learnability mattered as much as efficiency. We designed the system to feel immediately understandable, reducing training time from days to under one and increasing confidence for both new and tenured experts.",
         stats: [
           { label: "Annual turnover", value: "~70%" },
           { label: "Average tenure", value: "~60 days" },
         ],
-        content: "With such high turnover, learnability mattered as much as efficiency. We designed the system to feel immediately understandable, reducing training time from days to under one — and increasing confidence for both new and tenured experts.",
-        visualNote: "Bottom navigation pattern highlighting familiar interaction patterns",
         hasImage: true,
+        visualNote: "Bottom navigation pattern highlighting familiar interaction patterns",
       },
       {
+        eyebrow: "Design system",
         heading: "Dark mode wasn't a trend — it was a safety and usability need",
         content: "Experts often work at night, in cars, or on customers' porches. A bright interface wasn't just uncomfortable — it could be unsafe. We partnered with Asurion's design system team to define color tokens and usage patterns that supported readability, consistency, and scale.",
         additionalContent: "Those standards were later added to the company-wide system, making dark mode reusable beyond Field.",
-        visualNote: "Dark mode screens in situ with token or color usage callout",
         hasImage: true,
         image: "/Portfolio/field-app-dark-mode.gif",
         imageAutoplayLoop: true,
       },
       {
+        eyebrow: "Outcomes",
         heading: "The new structure earned trust — without requiring training",
         content: "Despite a user base known for skepticism toward change, feedback was overwhelmingly positive. Experts intuitively understood where to find things, even though the app had fundamentally changed. For the team, the new architecture unlocked future development and reduced friction in shipping new features.",
         quotes: [
@@ -150,7 +171,7 @@ const caseStudyData = {
         heading: "Designing systems means leading people and decisions in parallel",
         content: "This project reinforced the importance of designing systems — not screens — while managing people building within them. If revisiting it, I'd introduce lightweight metrics earlier to better quantify discoverability improvements alongside qualitative feedback.",
         hasImage: false,
-      }
+      },
     ],
   },
   "2": {
@@ -162,6 +183,10 @@ const caseStudyData = {
     role: "Principal Designer (IC)",
     platform: "Mobile app",
     heroGradient: { from: "#0d3d56", to: "#1a5f7a" },
+    heroImage: "/Portfolio/placeholder.svg",
+    problem: { content: "On-time arrival was a trust and SLA issue; the app's flow and sequencing contributed to experts arriving outside the customer's window." },
+    solution: { content: "We redesigned the flow to make state changes unmistakable and harder to perform accidentally, and A/B tested a flow-based approach against a blocking timer." },
+    impact: { content: "On-time arrival improved from roughly 60% to 75%. The work gave the team confidence to investigate system-level constraints with evidence rather than intuition." },
     sections: [
       {
         heading: "On-time arrival wasn't just about time — it was about trust",
@@ -256,6 +281,10 @@ const caseStudyData = {
     team: "1 designer",
     platform: "Mobile app",
     heroGradient: { from: "#3d2c0d", to: "#7a5c1a" },
+    heroImage: "/Portfolio/placeholder.svg",
+    problem: { content: "Experts needed strong sales skills; SmartPitch aimed to support them in the moment with tailored guidance without replacing training or crossing into creepy territory." },
+    solution: { content: "We designed AI as high-level context and tone guidance rather than scripts, made the AI visible and transparent, and designed within legal and guardrail constraints." },
+    impact: { content: "SP100 increased meaningfully in pilots; the work reframed how teams think about AI as thoughtful augmentation. It shaped how we guide teams exploring emerging technology." },
     sections: [
       {
         heading: "Sales success depended on skills many experts didn't sign up for",
@@ -369,6 +398,10 @@ const caseStudyData = {
     role: "Senior Manager, Product Design + Lead Designer",
     platform: "Mobile app + Desktop app",
     heroGradient: { from: "#1e2d4d", to: "#3d5a80" },
+    heroImage: "/Portfolio/placeholder.svg",
+    problem: { content: "A single repair job spanned multiple tools; systems were fragmented, work was duplicated and sometimes contradictory, and trust in Field app eroded." },
+    solution: { content: "We aligned on a single source of truth and designed a seamless experience that bridged Field app and Portal, requiring cross-team trust and design as neutral ground." },
+    impact: { content: "Teams shifted how they talked about the experience; the work hasn't launched yet but alignment and relationships improved." },
     sections: [
       {
         heading: "Nothing about this experience was end to end, even though the work was",
@@ -475,6 +508,10 @@ const caseStudyData = {
     role: "Designer & Developer",
     platform: "iOS app",
     heroGradient: { from: "#0d3d2a", to: "#1a5c45" },
+    heroImage: "/Portfolio/placeholder.svg",
+    problem: { content: "Rehab plans were simple on paper but hard to follow in practice; cognitive overhead and consistency mattered for equine recovery." },
+    solution: { content: "I built an iOS MVP—rehab plan builder and guided execution—using vibe coding (Cursor, Xcode), with sound/haptics for in-motion use." },
+    impact: { content: "A usable app for consistent rehab rides; expanded how I think about exploration, iteration, and the barrier between idea and artifact." },
     sections: [
       {
         heading: "Rehab plans were simple on paper and hard in real life",
@@ -540,6 +577,10 @@ const caseStudyData = {
     role: "Design Role",
     team: "Team size",
     platform: "Placeholder Platform",
+    heroImage: "/Portfolio/field-app-case-study-6-header.png",
+    problem: { content: "Placeholder problem summary for case study 6." },
+    solution: { content: "Placeholder solution summary for case study 6." },
+    impact: { content: "Placeholder impact summary for case study 6." },
     sections: [
       {
         heading: "Project Overview",
@@ -671,31 +712,47 @@ function HeroFadeLayout({
   nextId: number
   nextStudy: typeof caseStudyData[keyof typeof caseStudyData] | undefined
 }) {
+  const useHeroImage = "heroImage" in study && study.heroImage
+
   return (
     <div className="relative">
-      {/* Hero gradient section — shorter height, per-study colors */}
-      <div className="relative h-[28vh] md:h-[32vh] overflow-hidden">
-        {/* Per-case-study gradient background */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: study.heroGradient
-              ? `linear-gradient(to bottom, ${study.heroGradient.from}, ${study.heroGradient.to})`
-              : "linear-gradient(to bottom, #43035B, #AE03A8)",
-          }}
-        />
+      {useHeroImage ? (
+        /* Case study 6: header image below fixed nav */
+        <div className="w-full flex justify-center bg-[#0d1117] pt-16">
+          <div className="w-full max-w-[1920px] h-[280px] sm:h-[360px] md:h-[524px] overflow-hidden">
+            <img
+              src={study.heroImage}
+              alt=""
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+      ) : (
+        /* Hero gradient section — shorter height, per-study colors */
+        <div className="relative h-[28vh] md:h-[32vh] overflow-hidden">
+          {/* Per-case-study gradient background */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "heroGradient" in study && study.heroGradient
+                  ? `linear-gradient(to bottom, ${study.heroGradient.from}, ${study.heroGradient.to})`
+                  : "linear-gradient(to bottom, #43035B, #AE03A8)",
+            }}
+          />
 
-        {/* Gradual fade from top into page background (starts near top, full height) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to bottom, transparent 0%, rgba(13,17,23,0.3) 35%, rgba(13,17,23,0.85) 70%, #0d1117 100%)",
-          }}
-        />
-      </div>
+          {/* Gradual fade from top into page background (starts near top, full height) */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to bottom, transparent 0%, rgba(13,17,23,0.3) 35%, rgba(13,17,23,0.85) 70%, #0d1117 100%)",
+            }}
+          />
+        </div>
+      )}
 
-      {/* Content overlapping the fade (closer to top) */}
-      <div className="relative -mt-24 px-8 md:px-16 lg:px-24">
+      {/* Content overlapping the fade (closer to top); when hero image, content sits below with no overlap */}
+      <div className={`relative px-8 md:px-16 lg:px-24 ${useHeroImage ? "pt-8 md:pt-12" : "-mt-24"}`}>
         <div className="max-w-6xl">
           <motion.div
             initial={{ opacity: 1, y: 0 }}
@@ -708,21 +765,21 @@ function HeroFadeLayout({
               {study.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/60 max-w-3xl">{study.subtitle}</p>
-            <div className="flex gap-8 text-lg pt-4 pb-16">
+            <div className="flex gap-6 md:gap-8 pt-4 pb-8">
               <div>
-                <span className="text-[#5eead4]/60 uppercase tracking-wider block mb-1">Role</span>
-                <span className="text-white/80">{study.role}</span>
+                <span className="text-sm text-gray-400 uppercase tracking-wider block mb-1">Role</span>
+                <span className="text-base text-white/80">{study.role}</span>
               </div>
-              {study.team && (
+              {"team" in study && study.team && (
               <div>
-                <span className="text-[#5eead4]/60 uppercase tracking-wider block mb-1">Team</span>
-                <span className="text-white/80">{study.team}</span>
+                <span className="text-sm text-gray-400 uppercase tracking-wider block mb-1">Team</span>
+                <span className="text-base text-white/80">{study.team}</span>
               </div>
               )}
               {study.platform && (
                 <div>
-                  <span className="text-[#5eead4]/60 uppercase tracking-wider block mb-1">Platform</span>
-                  <span className="text-white/80">{study.platform}</span>
+                  <span className="text-sm text-gray-400 uppercase tracking-wider block mb-1">Platform</span>
+                  <span className="text-base text-white/80">{study.platform}</span>
               </div>
             )}
             </div>
@@ -730,12 +787,75 @@ function HeroFadeLayout({
         </div>
       </div>
 
-      {/* Content sections */}
-      <div className="px-8 md:px-16 lg:px-24 py-24 space-y-32">
-        {study.sections.map((section, i) => (
-          <div key={i} className="max-w-4xl mx-auto space-y-8">
+      {/* Content sections: Problem, Solution, Impact in two-column layout, then sections */}
+      <div className="px-8 md:px-16 lg:px-24 pt-6 pb-24">
+        {"problem" in study && study.problem && "solution" in study && study.solution && "impact" in study && study.impact && (
+          <div className="w-full mt-6 mb-32 px-8 py-10 rounded-xl bg-white/[0.04]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-12">
+            {/* Column 1: Problem */}
+            <div className="space-y-4">
+              <p className="text-[#5eead4] text-sm uppercase tracking-wider mb-2">Problem</p>
+              <p className="text-base text-white/70 leading-relaxed">
+                {(study.problem as { content: string }).content}
+              </p>
+            </div>
+            {/* Column 2: Solution */}
+            <div className="space-y-4">
+              <p className="text-[#5eead4] text-sm uppercase tracking-wider mb-2">Solution</p>
+              <p className="text-base text-white/70 leading-relaxed">
+                {(study.solution as { content: string }).content}
+              </p>
+            </div>
+            {/* Column 3: Impact */}
+            <div className="space-y-4">
+              <p className="text-[#5eead4] text-sm uppercase tracking-wider mb-2">Impact</p>
+              {(study.impact as { content?: string; subsections?: Array<{ subheading: string; points: string[] }> }).subsections?.length ? (
+                (study.impact as { subsections: Array<{ points: string[] }> }).subsections.map((sub, j) => (
+                  <ul key={j} className="space-y-3">
+                    {(sub.points ?? []).map((point, k) => (
+                      <li key={k} className="text-base text-white/60 leading-relaxed flex gap-3">
+                        <span className="text-[#5eead4]">→</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ))
+              ) : (
+                <p className="text-base text-white/70 leading-relaxed">
+                  {(study.impact as { content: string }).content}
+                </p>
+              )}
+            </div>
+            </div>
+          </div>
+        )}
+
+        {/* Remaining sections */}
+        {(study.sections as Array<{
+          heading: string
+          content: string
+          eyebrow?: string
+          additionalContent?: string
+          quote?: string
+          subsections?: Array<{ subheading: string; points: string[] }>
+          stats?: Array<{ label: string; value: string }>
+          quotes?: string[]
+          hasImage?: boolean
+          image?: string
+          visualNote?: string
+          imageAutoplayLoop?: boolean
+        }>).map((section, i) => (
+          <div
+            key={i}
+            className={`max-w-4xl mx-auto space-y-8 ${i === 0 ? "" : "mt-32"}`}
+          >
+            {section.eyebrow && (
+              <p className="text-[#5eead4] text-sm uppercase tracking-wider mb-2">{section.eyebrow}</p>
+            )}
             <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight text-balance">{section.heading}</h2>
-            <p className="text-lg text-white/70 leading-relaxed">{section.content}</p>
+            {section.content && (
+              <p className="text-lg text-white/70 leading-relaxed">{section.content}</p>
+            )}
             
             {section.additionalContent && (
               <p className="text-lg text-white/70 leading-relaxed">{section.additionalContent}</p>
@@ -751,7 +871,9 @@ function HeroFadeLayout({
               <div className="grid md:grid-cols-2 gap-8">
                 {section.subsections.map((sub, j) => (
                   <div key={j} className="space-y-4">
-                    <h3 className="text-xl font-serif text-white">{sub.subheading}</h3>
+                    {sub.subheading && (
+                      <h3 className="text-xl font-serif text-white">{sub.subheading}</h3>
+                    )}
                     <ul className="space-y-3">
                       {sub.points.map((point, k) => (
                         <li key={k} className="text-white/60 leading-relaxed flex gap-3">
@@ -806,18 +928,18 @@ function HeroFadeLayout({
             )}
             
             {section.hasImage && (
-              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${"image" in section && section.image ? "w-full" : "aspect-[16/10]"}`}>
-                {"image" in section && section.image ? (
+              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
+                {section.image ? (
                   <img
                     src={section.image}
                     alt=""
                     className="w-full h-auto block max-w-full"
-                    loading={"imageAutoplayLoop" in section && section.imageAutoplayLoop ? "eager" : "lazy"}
+                    loading={section.imageAutoplayLoop ? "eager" : "lazy"}
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center">
                     <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote}</p>
+                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
                   </div>
                 )}
               </div>
