@@ -269,6 +269,103 @@ export function Page11DarkMesh() {
       {/* Philosophy Section - Dark version */}
       <PhilosophySection />
 
+      {/* How I lead - Bento */}
+      <section className="py-32 px-8 md:px-16 lg:px-24 border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-serif text-3xl md:text-4xl text-white mb-4"
+          >
+            How I lead
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-lg text-white/60 mb-16 max-w-2xl"
+          >
+            What my team can expect from me — and what I expect from the work we put into the world.
+          </motion.p>
+          <div className="space-y-4 md:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {[
+                {
+                  title: "Raise the bar, then help people reach it.",
+                  body: "I care deeply about craft and quality, and I invest time in coaching and feedback so the whole team can do their best work.",
+                },
+                {
+                  title: "Invest in people, not just projects.",
+                  body: "Strong teams create strong outcomes, so I prioritize mentorship, growth, and psychological safety alongside delivery.",
+                },
+                {
+                  title: "Build bridges before you need them.",
+                  body: "Alignment and trust don't happen by accident — I intentionally build relationships across teams so good ideas can move forward.",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white/5 rounded-lg border border-white/10 p-6 md:p-8"
+                >
+                  <h3 className="font-serif text-xl md:text-2xl text-white mb-4 leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/70 leading-relaxed text-base">
+                    {item.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {[
+                {
+                  title: "It isn't done until it's simple.",
+                  body: "I push for clarity and refinement so the final experience feels intuitive, not just complete.",
+                },
+                {
+                  title: "Design for real conditions, not ideal ones.",
+                  body: "I focus on how things actually work in the world — under pressure, with imperfect systems, and real human behavior.",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (3 + i) * 0.05 }}
+                  className="bg-white/5 rounded-lg border border-white/10 p-6 md:p-8"
+                >
+                  <h3 className="font-serif text-xl md:text-2xl text-white mb-4 leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/70 leading-relaxed text-base">
+                    {item.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <Link
+              href="/how-i-lead"
+              className="inline-flex items-center justify-center px-6 py-3 border border-white/20 text-base font-medium rounded-md shadow-sm text-white hover:bg-white/10 transition-colors"
+            >
+              Read my leadership philosophy
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Mini About Section - initial visible so content shows without relying on whileInView */}
       <section id="about" className="py-32 px-8 md:px-16 lg:px-24 border-white/10 border-t-0">
         <div className="max-w-6xl mx-auto">
