@@ -89,15 +89,19 @@ const caseStudyData = {
     },
     sections: [
       {
-        eyebrow: "Context",
-        heading: "Field app in the hands of experts",
-        content: "Field app is the primary tool for Asurion Experts—same-day delivery and setup—from viewing their daily routes to facilitating a 5-star customer experience. As the service scaled, the app's structure didn't keep up.",
-        hasImage: true,
-        image: "/Portfolio/field-app-hero.png",
+        eyebrow: "THE CHALLENGE",
+        heading: "The app worked — until it didn't",
+        content: "By 2025, the Asurion Field app was doing what it had been built to do in 2019: power same-day delivery and setup appointments for customers filing phone insurance claims. On paper, it worked. Experts could complete their jobs. The business continued to operate. But underneath that surface stability, the cracks were widening.",
+        asides: [
+          "Challenge 01 - Accumulated tech debt created a ton of constraints that negatively impacted not only what we could build, but how fast we could deliver it",
+          "Challenge 03 - The app's IA wasn't intuitive and required a lot of upfront training to teach Experts where to find things",
+          "Challenge 02 - The business was hesitant to invest the time into fixing something that they didn't see as obviously broken",
+        ],
+        additionalContent: "The app had grown far beyond its original MVP structure. Nearly 1,500 experts relied on it daily to complete ~1.2 million jobs per year nationwide. Yet structurally, it still revolved around a single organizing principle: the job feed. Everything else — performance metrics, sales tools, shift management — either lived inside that feed or was buried behind a hamburger menu. \n\n As we scaled operations and introduced new features, we began seeing a troubling pattern. Adoption was low. Experts weren't using tools they had explicitly requested. In interviews, many didn't even know those features existed. \n\n Training for Field app alone took multiple days of onboarding for new hires. Every new release required additional retraining. Coaches were fielding constant \"how do I…?\" questions. Meanwhile, engineering complexity ballooned because the backend required everything displayed on the main screen to be modeled as a \"job.\" Workarounds compounded. Tech debt slowed velocity. \n\n We could continue operating. But we could not continue scaling like this. \n\n I had been advocating for a structural redesign for over two years. It repeatedly lost prioritization because it didn't promise direct revenue. But the longer we delayed, the more friction accumulated — for experts and for the business.",
+        hasImage: false,
       },
       {
-        eyebrow: "The challenge",
-        heading: "Why this mattered for experts and the business",
+        heading: "Why this work mattered",
         content: "For experts, the result was high cognitive load during already stressful, time-sensitive days; new features were easy to miss; and learning the app required heavy training. For the business, there was no clear place to add new global features, discoverability made it hard to measure feature impact, and scaling the service meant rethinking the app's core structure.",
         subsections: [
           {
@@ -106,7 +110,7 @@ const caseStudyData = {
               "High cognitive load during already stressful, time-sensitive days",
               "New features were easy to miss",
               "Learning the app required heavy training",
-            ]
+            ],
           },
           {
             subheading: "For the business",
@@ -114,39 +118,65 @@ const caseStudyData = {
               "No clear place to add new global features",
               "Discoverability issues made it hard to measure feature impact",
               "Scaling the service meant rethinking the app's core structure",
-            ]
-          }
+            ],
+          },
         ],
-        hasImage: true,
-        image: "/Portfolio/field-app-old-homepage.png",
-      },
-      {
-        eyebrow: "Approach",
-        heading: "Designing an IA that could scale",
-        content: "We audited the existing app, mapped upcoming roadmap features, and paired usage data with expert and stakeholder input. The resulting IA balanced immediate needs with future flexibility, while leaning on patterns experts already understood from everyday apps.",
-        hasImage: true,
-        image: "/Portfolio/field-app-ia-diagram.png",
-      },
-      {
-        eyebrow: "Role",
-        heading: "I owned the architecture and led the team building within it",
-        content: "I worked in a player/coach role, both as Sr Manager overseeing two designers and spending significant time in Figma collaborating with them. I owned the information architecture, bottom navigation, and homepage definition, and ensured multiple designers building within the new system stayed visually aligned and structurally consistent.",
-        additionalContent: "I also worked closely with Product partners to get this work officially prioritized and added to the roadmap by communicating the potential value to both experts and the business.",
         hasImage: false,
       },
       {
-        eyebrow: "Constraints",
-        heading: "When most users are new, clarity isn't optional",
-        content: "With annual turnover around 70% and average tenure around 60 days, learnability mattered as much as efficiency. We designed the system to feel immediately understandable, reducing training time from days to under one and increasing confidence for both new and tenured experts.",
-        stats: [
-          { label: "Annual turnover", value: "~70%" },
-          { label: "Average tenure", value: "~60 days" },
-        ],
+        heading: "Securing buy-in for work that didn't have immediate ROI",
+        content: "The hardest part of this project wasn't design. It was convincing the organization that foundational work mattered. \n\n Because the redesign wasn't tied to a near-term financial lift, it kept getting pushed down the roadmap. Rather than wait, I began building the future state anyway. Outside of formal prioritization, I created a high-fidelity vision prototype that reimagined the Field app with clear system anchors, intentional navigation, and space to scale.",
         hasImage: true,
-        visualNote: "Bottom navigation pattern highlighting familiar interaction patterns",
+        visualNote: "Early prototype exploration",
+        additionalContent: "I socialized that vision repeatedly — in product reviews, engineering conversations, leadership check-ins. Instead of arguing abstractly for \"better IA,\" I showed what it could feel like. I framed the redesign around expert quality of life and long-term velocity: faster shipping, lighter training, fewer workarounds. \n\n Over time, that narrative gained traction. Trust I had built with product and engineering partners made it easier to push. When the initiative was finally prioritized, it wasn't because it suddenly had financial ROI — it was because the organization understood the cost of doing nothing.",
       },
       {
-        eyebrow: "Design system",
+        eyebrow: "THE APPROACH",
+        heading: "In-field research revealed the hidden cognitive load",
+        content: "Once formally greenlit, we grounded the redesign in real-world observation. \n\n We conducted ride-alongs, expert feedback sessions, stakeholder interviews across Ops and Sales Enablement, and analyzed years of SUS data. We also examined business metrics — jobs completed per expert per day, sales performance, and NPS. \n\n What surprised me most wasn't what was inside the app — it was what was happening outside of it. \n\n Experts were creating manual workarounds to compensate for structural gaps. Coaches required them to manually copy their daily job list into Microsoft Teams each morning. Finding a Zoom link for a start-of-day huddle meant digging through chat threads. Performance metrics required either navigating buried menus or asking a manager for a screenshot of PowerBI. \n\n These weren't isolated inconveniences. They were signals that our system architecture didn't reflect the reality of how experts worked.",
+        hasImage: false,
+      },
+      {
+        eyebrow: "MY ROLE",
+        heading: "Driving alignment cross-functionally",
+        content: "I drove the core IA decisions while player-coaching two senior designers — one focused on the Homepage and feed evolution, the other on sales and dashboard integration. Early in the process, I facilitated a cross-functional workshop to align on shared experience principles across design, product, and engineering. That alignment prevented us from solving for features in isolation.",
+        subsections: [
+          {
+            subheading: "1. One place for everything",
+            points: ["Experts should manage jobs, track progress, and complete tasks in a single, seamless app. Integrate rather than complicate."],
+          },
+          {
+            subheading: "2. Simplicity is the standard",
+            points: ["A feature isn't done until it's intuitive. Remove unnecessary steps, words, and training barriers."],
+          },
+          {
+            subheading: "3. Create a seamless, cohesive experience",
+            points: ["Navigation, job management, and updates should feel effortless and consistent across all platforms."],
+          },
+          {
+            subheading: "4. Guide users, don't just inform",
+            points: ["Reduce cognitive load with guided workflows, automation, and clear next steps. Prioritize speed, accuracy, and usability."],
+          },
+          {
+            subheading: "5. Assume happy path, but provide a way out",
+            points: ["Design for the ideal flow but ensure flexibility when things go wrong. Experts should always have a fix."],
+          },
+          {
+            subheading: "6. Build consumer-grade tools",
+            points: ["Experts need intuitive, high-quality tools to deliver top-tier service. Our tools should be as polished, reliable, and easy to use as the best consumer apps."],
+          },
+        ],
+        hasImage: false,
+      },
+      {
+        eyebrow: "THE SOLUTION",
+        heading: "From a single feed to a scalable system architecture",
+        content: "The original app opened directly to the job feed. It had no true top-level navigation. Everything else lived in a hamburger menu or within a job itself. Structurally, it was flat — and brittle. \n\n I led the definition of a new IA model using what we had learned from our research, as well as leveraging common patterns out in the wild. We introduced a bottom navigation with three primary destinations: a Homepage, the Job Feed, and a dedicated Performance Dashboard.",
+        hasImage: true,
+        image: "/Portfolio/field-app-ia-diagram.png",
+        additionalContent: "The Homepage became a flexible surface for global features — shift management, expense reporting, non-time-bound tasks, and contextual highlights. It gave us a scalable container for capabilities that previously had nowhere logical to live. \n\n We validated the direction through user testing, launched a pilot market, and then rolled out nationwide in a big-bang release approximately two months after formal prioritization.",
+      },
+      {
         heading: "Dark mode wasn't a trend — it was a safety and usability need",
         content: "Experts often work at night, in cars, or on customers' porches. A bright interface wasn't just uncomfortable — it could be unsafe. We partnered with Asurion's design system team to define color tokens and usage patterns that supported readability, consistency, and scale.",
         additionalContent: "Those standards were later added to the company-wide system, making dark mode reusable beyond Field.",
@@ -155,9 +185,21 @@ const caseStudyData = {
         imageAutoplayLoop: true,
       },
       {
-        eyebrow: "Outcomes",
-        heading: "The new structure earned trust — without requiring training",
-        content: "Despite a user base known for skepticism toward change, feedback was overwhelmingly positive. Experts intuitively understood where to find things, even though the app had fundamentally changed. For the team, the new architecture unlocked future development and reduced friction in shipping new features.",
+        eyebrow: "THE RESULT",
+        heading: "Less training, higher adoption, and a system built to scale",
+        content: "Upfront training time for Experts dropped from three full days to less than one. Ongoing feature releases no longer required heavy retraining modules; in many cases, lighter communication sufficed because the system made sense. \n\n Performance dashboard utilization increased significantly once it was no longer buried. Experts started viewing their sales metrics on average 3x more often than before, leading to a 12.5% increase in sales. Navigation confusion decreased, and qualitative feedback consistently reflected lower cognitive load and easier task completion.",
+        stats: [
+          { value: "$1.1M", label: "in annual savings" },
+          { value: "12.5%", label: "increase in sales" },
+          { value: "50%", label: "decrease in time to launch new features" },
+        ],
+        statsLarge: true,
+        additionalContent: "At our scale, even marginal efficiency gains matter. Saving one minute per job per expert represents roughly $1.1M in annual value. While we did not eliminate all technical debt in a single phase, we fundamentally repositioned the platform to support faster iteration and sustainable growth. \n\n The following year, the business formalized an OKR around evolving systems and reducing tech debt. We were already moving in that direction and well-positioned to continue the momentum.",
+        hasImage: false,
+      },
+      {
+        heading: "…And Experts loved it",
+        content: "Despite a user base known for skepticism toward change, feedback was overwhelmingly positive. Experts intuitively understood where to find things, even though the app had fundamentally changed.",
         quotes: [
           "I definitely like it. Looks a lot better and I can find things a lot better. It's been great so far! — Expert in Charlotte, NC",
           "I like the new changes. Everything's in one place you don't have to go look for anything. Nice work! — Expert in Nashville, TN",
@@ -168,8 +210,9 @@ const caseStudyData = {
         hasImage: false,
       },
       {
-        heading: "Designing systems means leading people and decisions in parallel",
-        content: "This project reinforced the importance of designing systems — not screens — while managing people building within them. If revisiting it, I'd introduce lightweight metrics earlier to better quantify discoverability improvements alongside qualitative feedback.",
+        eyebrow: "REFLECTION",
+        heading: "What this project strengthened in me as a leader",
+        content: "This work reinforced the importance of long-horizon advocacy. Foundational redesigns rarely have immediate financial metrics attached to them. Selling them requires vision, trust, and persistence. \n\n It also sharpened my ability to operate as a player-coach — defining strategic direction while staying close enough to the work to guide structural decisions in Figma alongside my team. \n\n If I were to do one thing differently, I would socialize the long-term vision more broadly and earlier. The conviction was there, but earlier visibility may have accelerated alignment. \n\n More than anything, this project reminded me that scalable systems don't happen accidentally. They require someone willing to look beneath what \"works\" and ask whether it will still work at 2x or 5x the scale.",
         hasImage: false,
       },
     ],
@@ -839,7 +882,10 @@ function HeroFadeLayout({
           quote?: string
           subsections?: Array<{ subheading: string; points: string[] }>
           stats?: Array<{ label: string; value: string }>
+          statsLarge?: boolean
           quotes?: string[]
+          asides?: string[]
+          strikethroughContent?: string
           hasImage?: boolean
           image?: string
           visualNote?: string
@@ -854,11 +900,33 @@ function HeroFadeLayout({
             )}
             <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight text-balance">{section.heading}</h2>
             {section.content && (
-              <p className="text-lg text-white/70 leading-relaxed">{section.content}</p>
+              <div className="space-y-4">
+                {section.content.split(/\n\n+/).map((para, idx) => (
+                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                ))}
+              </div>
+            )}
+
+            {section.asides && section.asides.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                {section.asides.map((aside, j) => (
+                  <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+                    <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {section.strikethroughContent && (
+              <p className="text-lg text-white/50 leading-relaxed line-through">{section.strikethroughContent}</p>
             )}
             
             {section.additionalContent && (
-              <p className="text-lg text-white/70 leading-relaxed">{section.additionalContent}</p>
+              <div className="space-y-4">
+                {section.additionalContent.split(/\n\n+/).map((para, idx) => (
+                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                ))}
+              </div>
             )}
             
             {section.quote && (
@@ -888,10 +956,10 @@ function HeroFadeLayout({
             )}
             
             {section.stats && (
-              <div className="grid grid-cols-2 gap-8 py-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 py-10">
                 {section.stats.map((stat, j) => (
                   <div key={j} className="text-center">
-                    <div className="text-5xl font-serif text-[#5eead4] mb-3">{stat.value}</div>
+                    <div className={`font-serif text-[#5eead4] mb-3 ${section.statsLarge ? "text-6xl md:text-7xl" : "text-5xl"}`}>{stat.value}</div>
                     <div className="text-sm text-white/40 uppercase tracking-wider">{stat.label}</div>
                   </div>
                 ))}
