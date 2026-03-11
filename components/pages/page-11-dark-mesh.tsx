@@ -1183,7 +1183,7 @@ function PhilosophySection() {
         <motion.div style={{ x: x2 }} className="flex gap-4 whitespace-nowrap">
           {Array.from({ length: 4 }).map((_, i) => (
             <span key={`line2-${i}`} className="font-serif text-6xl md:text-8xl text-[#5eead4]/10">
-              Systems Thinking • Inclusive Design • Craft Obsessed •
+              Systems Thinking • Player-Coach • Craft Obsessed •
             </span>
           ))}
         </motion.div>

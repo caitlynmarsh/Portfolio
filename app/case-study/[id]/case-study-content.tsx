@@ -62,7 +62,7 @@ const caseStudyData = {
     year: "2025",
     title: "Redesigning Field app to reduce friction and unlock scale",
     subtitle: "Creating a clearer, more scalable foundation for Asurion Experts' daily work",
-    role: "Sr Manager, Product Design + Lead Designer",
+    role: "Sr Manager, Product Design",
     team: "2 designers",
     platform: "Mobile app",
     heroGradient: { from: "#43035B", to: "#AE03A8" },
@@ -93,9 +93,9 @@ const caseStudyData = {
         heading: "The app worked — until it didn't",
         content: "By 2025, the Asurion Field app was doing what it had been built to do in 2019: power same-day delivery and setup appointments for customers filing phone insurance claims. On paper, it worked. Experts could complete their jobs. The business continued to operate. But underneath that surface stability, the cracks were widening.",
         asides: [
-          "Challenge 01 - Accumulated tech debt created a ton of constraints that negatively impacted not only what we could build, but how fast we could deliver it",
-          "Challenge 03 - The app's IA wasn't intuitive and required a lot of upfront training to teach Experts where to find things",
-          "Challenge 02 - The business was hesitant to invest the time into fixing something that they didn't see as obviously broken",
+          "Challenge 01 - Accumulated tech debt created constraints that negatively impacted not only what we could build, but how fast we could deliver it",
+          "Challenge 02 - The app's IA wasn't intuitive and required a lot of upfront training to teach Experts where to find things",
+          "Challenge 03 - The business was hesitant to invest the time into fixing something that they didn't see as obviously broken",
         ],
         additionalContent: "The app had grown far beyond its original MVP structure. Nearly 1,500 experts relied on it daily to complete ~1.2 million jobs per year nationwide. Yet structurally, it still revolved around a single organizing principle: the job feed. Everything else — performance metrics, sales tools, shift management — either lived inside that feed or was buried behind a hamburger menu. \n\n As we scaled operations and introduced new features, we began seeing a troubling pattern. Adoption was low. Experts weren't using tools they had explicitly requested. In interviews, many didn't even know those features existed. \n\n Training for Field app alone took multiple days of onboarding for new hires. Every new release required additional retraining. Coaches were fielding constant \"how do I…?\" questions. Meanwhile, engineering complexity ballooned because the backend required everything displayed on the main screen to be modeled as a \"job.\" Workarounds compounded. Tech debt slowed velocity. \n\n We could continue operating. But we could not continue scaling like this. \n\n I had been advocating for a structural redesign for over two years. It repeatedly lost prioritization because it didn't promise direct revenue. But the longer we delayed, the more friction accumulated — for experts and for the business.",
         hasImage: false,
@@ -223,7 +223,7 @@ const caseStudyData = {
     year: "2025",
     title: "Designing a system that guides behavior instead of policing it",
     subtitle: "Improving on-time arrival through flow design, not constraints",
-    role: "Principal Designer (IC)",
+    role: "Principal Designer",
     platform: "Mobile app",
     heroGradient: { from: "#0d3d56", to: "#1a5f7a" },
     heroImage: "/Portfolio/ota-hero.png",
@@ -451,7 +451,7 @@ const caseStudyData = {
     year: "2026",
     title: "Fixing a fragmented experience across systems",
     subtitle: "Bridging teams and systems to create a seamless end-to-end experience",
-    role: "Senior Manager, Product Design + Lead Designer",
+    role: "Senior Manager, Product Design",
     platform: "Mobile app + Desktop app",
     heroGradient: { from: "#1e2d4d", to: "#3d5a80" },
     heroImage: "/Portfolio/placeholder.svg",
@@ -932,11 +932,21 @@ function HeroFadeLayout({
 
             {section.asides && section.asides.length > 0 && (
               <div className={`grid gap-4 py-4 ${section.asidesGridCols === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
-                {section.asides.map((aside, j) => (
-                  <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
-                    <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
-                  </div>
-                ))}
+                {section.asides.map((aside, j) => {
+                  const challengeMatch = aside.match(/^(Challenge \d+\s*[:\-]\s*)(.*)$/i)
+                  return (
+                    <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+                      {challengeMatch ? (
+                        <>
+                          <div className="text-sm font-semibold text-white/90 mb-1.5">{challengeMatch[1].replace(/\s*[:\-]\s*$/, "").trim()}</div>
+                          <p className="text-sm text-white/70 leading-relaxed">{challengeMatch[2]}</p>
+                        </>
+                      ) : (
+                        <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
 
