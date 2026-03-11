@@ -33,6 +33,7 @@ const caseStudies = [
     quote: "Even experts trying to do the right thing were set up to fail.",
     imagePosition: "right" as const,
     role: "Principal Designer (IC)",
+    image: "/Portfolio/ota-card.png",
   },
   {
     id: 3,
@@ -221,7 +222,11 @@ export function Page11DarkMesh() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-serif text-5xl md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
           >
-            {"Hi! I'm Caitlyn"}
+            {"Product design leader"}
+            <br className="hidden md:block" />
+            <span className="lg:whitespace-nowrap">{" solving messy, real-world"}</span>
+            <br className="hidden md:block" />
+            {" problems at scale."}
           </motion.h1>
           <motion.p
             initial={{ opacity: 1, y: 0 }}
@@ -229,9 +234,7 @@ export function Page11DarkMesh() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl"
           >
-            I design thoughtful experiences and lead teams
-            <br />
-            to create work that feels a little like magic.
+            I lead design teams in building scalable systems that work in the real world — where constraints, pressure, and trust are part of the equation.
           </motion.p>
 
           {/* Scroll indicator - hidden when overlapping layouts are active */}

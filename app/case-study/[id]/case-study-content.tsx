@@ -66,7 +66,7 @@ const caseStudyData = {
     team: "2 designers",
     platform: "Mobile app",
     heroGradient: { from: "#43035B", to: "#AE03A8" },
-    heroImage: "/Portfolio/placeholder.svg",
+    heroImage: "/Portfolio/field-app-hero.png",
     problem: {
       content: "The Asurion Field app had outgrown its 2019 MVP foundation. Its architecture buried features and blocked the business from quickly scaling new capabilities. 1,500 experts relied on it daily to complete ~1.2M same-day delivery jobs per year — yet adoption of new features was low and tech debt made iteration increasingly costly and slow.",
     },
@@ -226,92 +226,105 @@ const caseStudyData = {
     role: "Principal Designer (IC)",
     platform: "Mobile app",
     heroGradient: { from: "#0d3d56", to: "#1a5f7a" },
-    heroImage: "/Portfolio/placeholder.svg",
+    heroImage: "/Portfolio/ota-hero.png",
     problem: { content: "On-time arrival was a trust and SLA issue; the app's flow and sequencing contributed to experts arriving outside the customer's window." },
     solution: { content: "We redesigned the flow to make state changes unmistakable and harder to perform accidentally, and A/B tested a flow-based approach against a blocking timer." },
     impact: { content: "On-time arrival improved from roughly 60% to 75%. The work gave the team confidence to investigate system-level constraints with evidence rather than intuition." },
     sections: [
       {
-        heading: "On-time arrival wasn't just about time — it was about trust",
-        content: "In Asurion Field, \"on-time arrival\" means an expert arriving within the customer's selected two-hour window to deliver and set up a new phone for them. Arriving outside that window — early or late — breaks SLAs with client partners and erodes customer trust.",
-        additionalContent: "At the time of this work, we were contractually expected to stay above 80% on-time. We were hovering around 60%. This wasn't a scheduling problem alone. It was a behavior problem — shaped by how the Field app sequenced information, intent, and action at critical moments.",
-        visualNote: "Large metric callout: 60% → 75% (80% target subtly indicated)",
-        hasImage: true,
+        eyebrow: "THE CHALLENGE",
+        heading: "On-time arrival is an important metric for both the business and customers",
+        content: "In Asurion Field, \"on-time arrival\" means an expert arriving within the customer's selected two-hour window to deliver and set up a new phone for them. Arriving outside that window — early or late — breaks SLAs with client partners and erodes customer trust.\n\nAt the time of this work, we were contractually expected to stay above 80% on-time. We were hovering around 60%.\n\nThis wasn't a scheduling or routing problem alone. It was a behavior problem — shaped by how the Field app sequenced information, intent, and action at critical moments.",
+        asides: [
+          "Challenge 01: Experts didn't understand that the job window was chosen by customers, so didn't think it was important to stick to",
+          "Challenge 02: The existing app flow made it easy to perform actions incorrectly",
+          "Challenge 03: Experts often felt that the routes given to them were impossible to complete on time, so they were looking for other ways to make up time in the day",
+          "Challenge 04: Data discrepancies meant we didn't have good visibility into what was really happening in the field in order to know what to improve",
+        ],
+        asidesGridCols: 2,
+        hasImage: false,
       },
       {
+        eyebrow: "THE APPROACH",
         heading: "Fixing this meant changing behavior, not just screens",
-        content: "Experts often arrived outside the selected window for understandable reasons. They were trying to work efficiently, get ahead of schedule, or recover time elsewhere in their day. But from a customer's perspective, arriving early could be just as frustrating as arriving late.",
-        additionalContent: "Customers choose appointment windows based on when they'll be home. Showing up outside that window — especially without notice — directly impacted NPS and trust. The challenge wasn't convincing experts that on-time arrival mattered. It was designing an experience that made the right behavior the easiest one to perform.",
+        content: "Experts often arrived outside the window the customer chose for understandable reasons. They were trying to work efficiently, get ahead of schedule, or recover time elsewhere in their day. But from a customer's perspective, arriving early could be just as frustrating as arriving late.\n\nCustomers choose appointment windows based on when they'll be home. Showing up outside that window — especially without notice — directly impacted NPS and trust.\n\nThe challenge wasn't convincing experts that on-time arrival mattered. It was designing an experience that made the right behavior the easiest one to perform.",
         hasImage: false,
       },
       {
         heading: "The constraints were non-negotiable",
-        content: "We couldn't change the routing system, the two-hour appointment windows, or the client SLAs defining success. Backend logic and scheduling were off the table.",
-        additionalContent: "What we could change was how the Field app guided behavior: how clearly it communicated state, when it revealed information, and how it sequenced actions under real-world conditions. This became a small-surface, high-impact design problem.",
-        hasImage: false,
+        content: "We couldn't change the routing system, the two-hour appointment windows, or the client SLAs defining success. Backend logic and scheduling were off the table (for now).\n\nWhat we could change was how the Field app guided behavior: how clearly it communicated state, when it revealed information, and how it sequenced actions under real-world conditions.\n\nThis became a small-surface, high-impact design problem.",
+        hasImage: true,
+        image: "/Portfolio/en-route.gif",
       },
       {
         heading: "When control feels like the obvious answer — but isn't",
-        content: "Early in the project, Operations came to us with a specific proposal: introduce a timer screen that would block experts from continuing a job if they arrived too early, outside the appointment window.",
-        additionalContent: "On the surface, this made sense. If early arrival was the problem, prevent it entirely. From a design perspective, this raised concerns. Blocking progress doesn't change intent — it often just shifts consequences elsewhere in the system. If experts couldn't arrive early, many would inevitably arrive later in the day, compounding delays and frustration. We raised these concerns, but were asked to proceed. Rather than debate hypotheticals, we tested.",
-        visualNote: "A/B tested screens",
+        content: "Early in the project, our Operations partners came to us with a specific proposal: introduce a screen that would block experts from continuing a job if they arrived too early, outside the appointment window.\n\nOn the surface, this made sense. If early arrival was the problem, prevent it entirely.\n\nFrom an experience perspective, this raised concerns. Blocking progress often just shifts consequences elsewhere in the system. If experts couldn't arrive early, many would inevitably arrive later in the day, compounding delays and frustration.\n\nRather than debate hypotheticals, we A/B tested:",
+        subsections: [
+          {
+            subheading: "",
+            points: [
+              "The hard-blocking timer experience Operations proposed",
+              "A flow-based solution that guided behavior without forcing it",
+            ],
+          },
+        ],
         hasImage: true,
-      },
-      {
-        heading: "Evidence replaced assumption — and allowed us to move forward with confidence",
-        content: "We A/B tested the hard-blocking timer experience Operations proposed against a flow-based solution that guided behavior without forcing it.",
-        additionalContent: "The results were clear: the blocking experience actually made the metric worse. Preventing early arrivals pushed experts further behind schedule, increasing late arrivals later in the day.",
-        hasImage: false,
+        visualNote: "A/B test screens",
+        imageAfterSubsections: true,
+        additionalContent: "The results were clear: the blocking experience actually made the metric worse compared to the control by about 4%. Preventing early arrivals pushed experts further behind schedule, increasing late arrivals later in the day and leading to more jobs that had to be canceled entirely.\n\nEvidence replaced assumption — and allowed us to move forward with confidence.",
       },
       {
         heading: "The real problem lived between two nearly identical screens",
-        content: "The biggest breakdown occurred around two adjacent moments in the flow: \"En route\" and \"I've arrived.\"",
-        additionalContent: "On paper, the distinction was clear. In practice, it wasn't. The two screens looked visually similar, used nearly identical interactions, and appeared back-to-back. Under time pressure, experts would sometimes swipe through both without realizing it. Performance issues amplified this. When the app lagged, experts would attempt to swipe \"En route\" again — only for the \"I've arrived\" screen to load in that moment. One extra swipe, and both states were triggered back to back. Before these changes, over 80% of \"en route\" and \"arrived\" events were logged within two minutes of each other, despite average drive times of around 30 minutes.",
+        content: "The biggest breakdown occurred around two adjacent moments in the flow: \"En route\" and \"I've arrived.\"\n\nThe two screens looked visually similar, used nearly identical interactions, and appeared back-to-back. Under time pressure, experts would sometimes swipe through both without realizing it.",
+        hasImage: true,
+        visualNote: "Old en route and arrived screens",
+        imageAfterSubsections: true,
+        additionalContent: "Additionally, Experts had to leave the app to use their navigation, creating a clunky experience. Even for experts who meant well and really wanted to do the right thing, the Field app made it difficult and cumbersome to do. The old flow required them to go from Field app, to Google Maps, back to Field app, BACK to Google Maps, just to complete 1 step \"correctly\".",
+        hasImage2: true,
+        visualNote2: "Old flow diagram",
+        contentAfterImage2: "App performance issues amplified this. When the app lagged, experts would attempt to swipe \"En route\" again — only for the \"I've arrived\" screen to load in that moment. One extra swipe, and both states were triggered back to back.",
         quote: "Even experts trying to do the right thing were set up to fail.",
-        visualNote: "Before/after screen comparison with subtle annotations showing accidental double-swipe risk",
-        hasImage: true,
+        contentAfterQuote: "Before these changes, over 80% of \"en route\" and \"arrived\" events were logged within 2 minutes of each other, despite expected average drive times of around 30 minutes.",
       },
       {
+        eyebrow: "THE SOLUTION",
         heading: "Designing clarity into moments where ambiguity caused real damage",
-        content: "Rather than adding warnings or confirmations, we focused on making state changes unmistakable — and harder to perform accidentally.",
-        additionalContent: "We redesigned the flow so experts had to explicitly mark themselves \"en route\" before accessing navigation. The customer address was intentionally withheld until that moment, while a map-based view with drive time and ETA still gave experts what they needed to communicate with customers. We also changed the primary action so launching navigation happened after marking \"en route,\" keeping experts in Field long enough to trigger live tracking and customer notifications. The goal wasn't to slow experts down. It was to remove ambiguity exactly where ambiguity caused the most harm.",
-        visualNote: "Flow diagram highlighting the new \"commitment moment\"",
+        content: "Rather than adding warnings or confirmations, we focused on making state changes unmistakable — and harder to perform accidentally.\n\nWe redesigned the flow so experts had to explicitly mark themselves \"en route\" before accessing navigation. The customer address was intentionally withheld until that moment, while a map-based view with drive time and ETA still gave experts what they needed to communicate with customers.",
         hasImage: true,
+        visualNote: "New en route and arrived screens",
+        imageAfterSubsections: true,
+        additionalContent: "We also changed the primary action so launching navigation happened after marking \"en route,\" keeping experts in Field long enough to trigger live tracking and customer notifications.\n\nThe goal wasn't to slow experts down. It was to remove ambiguity exactly where ambiguity caused the most harm.",
       },
       {
+        eyebrow: "THE RESULT",
         heading: "Two small changes unlocked a measurable shift",
         content: "After launch, on-time arrival improved from roughly 60% to 75%. While still short of our SLA target, this was a significant directional improvement — and a clear signal that behavior and flow design were critical levers.",
-        additionalContent: "Just as importantly, the work gave the team confidence to investigate deeper system-level constraints with evidence rather than intuition.",
         stats: [
-          { label: "On-time arrival before", value: "~60%" },
-          { label: "On-time arrival after", value: "~75%" },
+          { value: "25%", label: "increase in on-time arrival" },
+          { value: "30%", label: "increase in data accuracy" },
         ],
-        visualNote: "Single large metric, minimal copy",
-        hasImage: true,
-      },
-      {
-        heading: "Pushing for better ideas — and proving them — changed how we worked",
-        content: "Alongside the blocking A/B test, I also explored a more holistic redesign of the flow. While initially considered too complex, sharing that work broadly helped leadership see a better long-term path.",
-        additionalContent: "With support from Product leadership, and through creative use of AI-assisted development and a Figma Make–powered handoff, engineering delivered the more ambitious solution two weeks ahead of the original MVP timeline. This shifted how the team thought about design's role — not just executing requests, but shaping better outcomes.",
+        statsLarge: true,
+        statsBeforeAdditionalContent: true,
+        additionalContent: "We also saw our data accuracy significantly improve as a result of the changes we made, giving us better insight into the experts' days and how the routing was actually holding up under real-life conditions, like traffic. We saw a huge jump in average drive times reported (from 17 minutes under expected to 23 minutes over), which gave the team confidence to investigate deeper system-level constraints with evidence rather than intuition.",
         hasImage: false,
       },
       {
-        heading: "What this reinforced for me",
-        content: "This project reinforced that:",
+        eyebrow: "REFLECTION",
+        heading: "Pushing for better ideas — and proving them — changed how we worked",
+        content: "Alongside the blocking A/B test, I also explored a more holistic redesign of the flow. While initially considered too complex, sharing that work broadly helped leadership see a better long-term path.\n\nWith support from Product leadership, and through creative use of AI-assisted development and a Figma Make–powered handoff, engineering delivered the more ambitious solution two weeks ahead of the original MVP timeline.\n\nThis shifted how the team thought about design's role — not just executing requests, but driving strategy and shaping better outcomes.\n\nThis project reinforced that:",
         subsections: [
           {
-            subheading: "Key learnings",
+            subheading: "",
             points: [
               "Blocking behavior rarely creates trust",
-              "Clear sequencing often outperforms hard constraints",
               "Testing is a powerful way to resolve cross-functional tension",
-              "Designing for imperfect systems requires empathy and rigor"
-            ]
-          }
+              "Designing for imperfect systems requires empathy and rigor",
+            ],
+          },
         ],
         additionalContent: "It's an approach I carry forward: push back thoughtfully, test honestly, and let evidence lead.",
         hasImage: false,
-      }
+      },
     ],
   },
   "3": {
@@ -885,11 +898,19 @@ function HeroFadeLayout({
           statsLarge?: boolean
           quotes?: string[]
           asides?: string[]
+          asidesGridCols?: 2 | 3
           strikethroughContent?: string
           hasImage?: boolean
           image?: string
           visualNote?: string
           imageAutoplayLoop?: boolean
+          imageAfterSubsections?: boolean
+          hasImage2?: boolean
+          visualNote2?: string
+          contentAfterImage2?: string
+          contentAfterQuote?: string
+          asides2?: string[]
+          statsBeforeAdditionalContent?: boolean
         }>).map((section, i) => (
           <div
             key={i}
@@ -898,7 +919,9 @@ function HeroFadeLayout({
             {section.eyebrow && (
               <p className="text-[#5eead4] text-sm uppercase tracking-wider mb-2">{section.eyebrow}</p>
             )}
-            <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight text-balance">{section.heading}</h2>
+            {section.heading && (
+              <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight text-balance">{section.heading}</h2>
+            )}
             {section.content && (
               <div className="space-y-4">
                 {section.content.split(/\n\n+/).map((para, idx) => (
@@ -908,7 +931,7 @@ function HeroFadeLayout({
             )}
 
             {section.asides && section.asides.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+              <div className={`grid gap-4 py-4 ${section.asidesGridCols === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
                 {section.asides.map((aside, j) => (
                   <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
                     <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
@@ -920,21 +943,7 @@ function HeroFadeLayout({
             {section.strikethroughContent && (
               <p className="text-lg text-white/50 leading-relaxed line-through">{section.strikethroughContent}</p>
             )}
-            
-            {section.additionalContent && (
-              <div className="space-y-4">
-                {section.additionalContent.split(/\n\n+/).map((para, idx) => (
-                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
-                ))}
-              </div>
-            )}
-            
-            {section.quote && (
-              <blockquote className="bg-white/5 border-l-4 border-[#5eead4] p-8 rounded-r-lg">
-                <p className="text-2xl font-serif text-white italic">{section.quote}</p>
-              </blockquote>
-            )}
-            
+
             {section.subsections && (
               <div className="grid md:grid-cols-2 gap-8">
                 {section.subsections.map((sub, j) => (
@@ -954,8 +963,86 @@ function HeroFadeLayout({
                 ))}
               </div>
             )}
+
+            {section.imageAfterSubsections && section.hasImage && (
+              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
+                {section.image ? (
+                  <img
+                    src={section.image}
+                    alt=""
+                    className="w-full h-auto block max-w-full"
+                    loading={section.imageAutoplayLoop ? "eager" : "lazy"}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
+                  </div>
+                )}
+              </div>
+            )}
             
-            {section.stats && (
+            {section.stats && section.statsBeforeAdditionalContent && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 py-10 max-w-2xl mx-auto">
+                {section.stats.map((stat, j) => (
+                  <div key={j} className="text-center">
+                    <div className={`font-serif text-[#5eead4] mb-3 ${section.statsLarge ? "text-6xl md:text-7xl" : "text-5xl"}`}>{stat.value}</div>
+                    <div className="text-sm text-white/40 uppercase tracking-wider">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {section.additionalContent && (
+              <div className="space-y-4">
+                {section.additionalContent.split(/\n\n+/).map((para, idx) => (
+                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                ))}
+              </div>
+            )}
+
+            {section.asides2 && section.asides2.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                {section.asides2.map((aside, j) => (
+                  <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+                    <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {section.hasImage2 && (
+              <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                <div className="w-full h-full flex flex-col items-center justify-center">
+                  <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                  <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote2 ?? ""}</p>
+                </div>
+              </div>
+            )}
+
+            {section.contentAfterImage2 && (
+              <div className="space-y-4">
+                {section.contentAfterImage2.split(/\n\n+/).map((para, idx) => (
+                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                ))}
+              </div>
+            )}
+            
+            {section.quote && (
+              <blockquote className="bg-white/5 border-l-4 border-[#5eead4] p-8 rounded-r-lg">
+                <p className="text-2xl font-serif text-white italic">{section.quote}</p>
+              </blockquote>
+            )}
+
+            {section.contentAfterQuote && (
+              <div className="space-y-4">
+                {section.contentAfterQuote.split(/\n\n+/).map((para, idx) => (
+                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                ))}
+              </div>
+            )}
+            
+            {section.stats && !section.statsBeforeAdditionalContent && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 py-10">
                 {section.stats.map((stat, j) => (
                   <div key={j} className="text-center">
@@ -995,7 +1082,7 @@ function HeroFadeLayout({
               </div>
             )}
             
-            {section.hasImage && (
+            {section.hasImage && !section.imageAfterSubsections && (
               <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
                 {section.image ? (
                   <img
