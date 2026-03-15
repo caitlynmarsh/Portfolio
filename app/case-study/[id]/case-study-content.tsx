@@ -98,6 +98,9 @@ const caseStudyData = {
           "Challenge 03 - The business was hesitant to invest the time into fixing something that they didn't see as obviously broken",
         ],
         additionalContent: "The app had grown far beyond its original MVP structure. Nearly 1,500 experts relied on it daily to complete ~1.2 million jobs per year nationwide. Yet structurally, it still revolved around a single organizing principle: the job feed. Everything else — performance metrics, sales tools, shift management — either lived inside that feed or was buried behind a hamburger menu. \n\n As we scaled operations and introduced new features, we began seeing a troubling pattern. Adoption was low. Experts weren't using tools they had explicitly requested. In interviews, many didn't even know those features existed. \n\n Training for Field app alone took multiple days of onboarding for new hires. Every new release required additional retraining. Coaches were fielding constant \"how do I…?\" questions. Meanwhile, engineering complexity ballooned because the backend required everything displayed on the main screen to be modeled as a \"job.\" Workarounds compounded. Tech debt slowed velocity. \n\n We could continue operating. But we could not continue scaling like this. \n\n I had been advocating for a structural redesign for over two years. It repeatedly lost prioritization because it didn't promise direct revenue. But the longer we delayed, the more friction accumulated — for experts and for the business.",
+        additionalContentImage: "Original app landing page & menu",
+        additionalContentImageSrc: "/Portfolio/field-app-old-screens.png",
+        additionalContentImageAfterParagraph: 2,
         hasImage: false,
       },
       {
@@ -127,7 +130,8 @@ const caseStudyData = {
         heading: "Securing buy-in for work that didn't have immediate ROI",
         content: "The hardest part of this project wasn't design. It was convincing the organization that foundational work mattered. \n\n Because the redesign wasn't tied to a near-term financial lift, it kept getting pushed down the roadmap. Rather than wait, I began building the future state anyway. Outside of formal prioritization, I created a high-fidelity vision prototype that reimagined the Field app with clear system anchors, intentional navigation, and space to scale.",
         hasImage: true,
-        visualNote: "Early prototype exploration",
+        image: "/Portfolio/field-app-early-prototype.png",
+        imageCaption: "Early UI exploration",
         additionalContent: "I socialized that vision repeatedly — in product reviews, engineering conversations, leadership check-ins. Instead of arguing abstractly for \"better IA,\" I showed what it could feel like. I framed the redesign around expert quality of life and long-term velocity: faster shipping, lighter training, fewer workarounds. \n\n Over time, that narrative gained traction. Trust I had built with product and engineering partners made it easier to push. When the initiative was finally prioritized, it wasn't because it suddenly had financial ROI — it was because the organization understood the cost of doing nothing.",
       },
       {
@@ -194,6 +198,8 @@ const caseStudyData = {
           { value: "50%", label: "decrease in time to launch new features" },
         ],
         statsLarge: true,
+        imageBeforeAdditionalContent: "Performance dashboard",
+        imageBeforeAdditionalContentSrc: "/Portfolio/field-app-performance-dashboard.png",
         additionalContent: "At our scale, even marginal efficiency gains matter. Saving one minute per job per expert represents roughly $1.1M in annual value. While we did not eliminate all technical debt in a single phase, we fundamentally repositioned the platform to support faster iteration and sustainable growth. \n\n The following year, the business formalized an OKR around evolving systems and reducing tech debt. We were already moving in that direction and well-positioned to continue the momentum.",
         hasImage: false,
       },
@@ -213,7 +219,8 @@ const caseStudyData = {
         eyebrow: "REFLECTION",
         heading: "What this project strengthened in me as a leader",
         content: "This work reinforced the importance of long-horizon advocacy. Foundational redesigns rarely have immediate financial metrics attached to them. Selling them requires vision, trust, and persistence. \n\n It also sharpened my ability to operate as a player-coach — defining strategic direction while staying close enough to the work to guide structural decisions in Figma alongside my team. \n\n If I were to do one thing differently, I would socialize the long-term vision more broadly and earlier. The conviction was there, but earlier visibility may have accelerated alignment. \n\n More than anything, this project reminded me that scalable systems don't happen accidentally. They require someone willing to look beneath what \"works\" and ask whether it will still work at 2x or 5x the scale.",
-        hasImage: false,
+        hasImage: true,
+        image: "/Portfolio/field-app-dark-mode-screens.png",
       },
     ],
   },
@@ -245,6 +252,19 @@ const caseStudyData = {
         hasImage: false,
       },
       {
+        heading: "A tale of two nearly identical screens",
+        content: "The biggest breakdown occurred around two adjacent moments in the flow: \"En route\" and \"I've arrived.\"\n\nThe two screens looked visually similar, used nearly identical interactions, and appeared back-to-back. Under time pressure, experts would sometimes swipe through both without realizing it.",
+        hasImage: true,
+        visualNote: "Old en route and arrived screens",
+        imageAfterSubsections: true,
+        additionalContent: "Additionally, Experts had to leave the app to use their navigation, creating a clunky experience. Even for experts who meant well and really wanted to do the right thing, the Field app made it difficult and cumbersome to do. The old flow required them to go from Field app, to Google Maps, back to Field app, BACK to Google Maps, just to complete 1 step \"correctly\".",
+        hasImage2: true,
+        visualNote2: "Old flow diagram",
+        contentAfterImage2: "App performance issues amplified this. When the app lagged, experts would attempt to swipe \"En route\" again — only for the \"I've arrived\" screen to load in that moment. One extra swipe, and both states were triggered back to back.",
+        quote: "Even experts trying to do the right thing were set up to fail.",
+        contentAfterQuote: "Before these changes, over 80% of \"en route\" and \"arrived\" events were logged within 2 minutes of each other, despite expected average drive times of around 30 minutes.",
+      },
+      {
         eyebrow: "THE APPROACH",
         heading: "Fixing this meant changing behavior, not just screens",
         content: "Experts often arrived outside the window the customer chose for understandable reasons. They were trying to work efficiently, get ahead of schedule, or recover time elsewhere in their day. But from a customer's perspective, arriving early could be just as frustrating as arriving late.\n\nCustomers choose appointment windows based on when they'll be home. Showing up outside that window — especially without notice — directly impacted NPS and trust.\n\nThe challenge wasn't convincing experts that on-time arrival mattered. It was designing an experience that made the right behavior the easiest one to perform.",
@@ -273,19 +293,7 @@ const caseStudyData = {
         imageAfterSubsections: true,
         additionalContent: "The results were clear: the blocking experience actually made the metric worse compared to the control by about 4%. Preventing early arrivals pushed experts further behind schedule, increasing late arrivals later in the day and leading to more jobs that had to be canceled entirely.\n\nEvidence replaced assumption — and allowed us to move forward with confidence.",
       },
-      {
-        heading: "The real problem lived between two nearly identical screens",
-        content: "The biggest breakdown occurred around two adjacent moments in the flow: \"En route\" and \"I've arrived.\"\n\nThe two screens looked visually similar, used nearly identical interactions, and appeared back-to-back. Under time pressure, experts would sometimes swipe through both without realizing it.",
-        hasImage: true,
-        visualNote: "Old en route and arrived screens",
-        imageAfterSubsections: true,
-        additionalContent: "Additionally, Experts had to leave the app to use their navigation, creating a clunky experience. Even for experts who meant well and really wanted to do the right thing, the Field app made it difficult and cumbersome to do. The old flow required them to go from Field app, to Google Maps, back to Field app, BACK to Google Maps, just to complete 1 step \"correctly\".",
-        hasImage2: true,
-        visualNote2: "Old flow diagram",
-        contentAfterImage2: "App performance issues amplified this. When the app lagged, experts would attempt to swipe \"En route\" again — only for the \"I've arrived\" screen to load in that moment. One extra swipe, and both states were triggered back to back.",
-        quote: "Even experts trying to do the right thing were set up to fail.",
-        contentAfterQuote: "Before these changes, over 80% of \"en route\" and \"arrived\" events were logged within 2 minutes of each other, despite expected average drive times of around 30 minutes.",
-      },
+     
       {
         eyebrow: "THE SOLUTION",
         heading: "Designing clarity into moments where ambiguity caused real damage",
@@ -903,14 +911,21 @@ function HeroFadeLayout({
           hasImage?: boolean
           image?: string
           visualNote?: string
+          imageCaption?: string
           imageAutoplayLoop?: boolean
           imageAfterSubsections?: boolean
           hasImage2?: boolean
           visualNote2?: string
+          imageCaption2?: string
           contentAfterImage2?: string
           contentAfterQuote?: string
           asides2?: string[]
           statsBeforeAdditionalContent?: boolean
+          additionalContentImage?: string
+          additionalContentImageSrc?: string
+          additionalContentImageAfterParagraph?: number
+          imageBeforeAdditionalContent?: string
+          imageBeforeAdditionalContentSrc?: string
         }>).map((section, i) => (
           <div
             key={i}
@@ -975,19 +990,24 @@ function HeroFadeLayout({
             )}
 
             {section.imageAfterSubsections && section.hasImage && (
-              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
-                {section.image ? (
-                  <img
-                    src={section.image}
-                    alt=""
-                    className="w-full h-auto block max-w-full"
-                    loading={section.imageAutoplayLoop ? "eager" : "lazy"}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
-                  </div>
+              <div className="space-y-2">
+                <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
+                  {section.image ? (
+                    <img
+                      src={section.image}
+                      alt=""
+                      className="w-full h-auto block max-w-full"
+                      loading={section.imageAutoplayLoop ? "eager" : "lazy"}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
+                    </div>
+                  )}
+                </div>
+                {section.imageCaption && (
+                  <p className="text-sm text-white/50 text-center">{section.imageCaption}</p>
                 )}
               </div>
             )}
@@ -1003,11 +1023,61 @@ function HeroFadeLayout({
               </div>
             )}
 
+            {section.imageBeforeAdditionalContent && (
+              <div className="space-y-2">
+                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                  {section.imageBeforeAdditionalContentSrc ? (
+                    <img src={section.imageBeforeAdditionalContentSrc} alt="" className="w-full h-full object-cover block" />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.imageBeforeAdditionalContent}</p>
+                    </div>
+                  )}
+                </div>
+                {section.imageBeforeAdditionalContentSrc && section.imageBeforeAdditionalContent && (
+                  <p className="text-sm text-white/50 text-center">{section.imageBeforeAdditionalContent}</p>
+                )}
+              </div>
+            )}
+
             {section.additionalContent && (
               <div className="space-y-4">
-                {section.additionalContent.split(/\n\n+/).map((para, idx) => (
-                  <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
-                ))}
+                {section.additionalContentImage != null && section.additionalContentImageAfterParagraph != null ? (
+                  (() => {
+                    const paras = section.additionalContent.split(/\n\n+/).map((p) => p.trim()).filter(Boolean)
+                    const afterIdx = Math.min(section.additionalContentImageAfterParagraph, paras.length)
+                    return (
+                      <>
+                        {paras.slice(0, afterIdx).map((para, idx) => (
+                          <p key={idx} className="text-lg text-white/70 leading-relaxed">{para}</p>
+                        ))}
+                        <div className="space-y-2">
+                          <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                            {section.additionalContentImageSrc ? (
+                              <img src={section.additionalContentImageSrc} alt="" className="w-full h-full object-cover block" />
+                            ) : (
+                              <div className="w-full h-full flex flex-col items-center justify-center">
+                                <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                                <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.additionalContentImage}</p>
+                              </div>
+                            )}
+                          </div>
+                          {section.additionalContentImageSrc && section.additionalContentImage && (
+                            <p className="text-sm text-white/50 text-center">{section.additionalContentImage}</p>
+                          )}
+                        </div>
+                        {paras.slice(afterIdx).map((para, idx) => (
+                          <p key={`p-${afterIdx + idx}`} className="text-lg text-white/70 leading-relaxed">{para}</p>
+                        ))}
+                      </>
+                    )
+                  })()
+                ) : (
+                  section.additionalContent.split(/\n\n+/).map((para, idx) => (
+                    <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
+                  ))
+                )}
               </div>
             )}
 
@@ -1022,11 +1092,16 @@ function HeroFadeLayout({
             )}
 
             {section.hasImage2 && (
-              <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
-                <div className="w-full h-full flex flex-col items-center justify-center">
-                  <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                  <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote2 ?? ""}</p>
+              <div className="space-y-2">
+                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote2 ?? ""}</p>
+                  </div>
                 </div>
+                {section.imageCaption2 && (
+                  <p className="text-sm text-white/50 text-center">{section.imageCaption2}</p>
+                )}
               </div>
             )}
 
@@ -1093,19 +1168,24 @@ function HeroFadeLayout({
             )}
             
             {section.hasImage && !section.imageAfterSubsections && (
-              <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
-                {section.image ? (
-                  <img
-                    src={section.image}
-                    alt=""
-                    className="w-full h-auto block max-w-full"
-                    loading={section.imageAutoplayLoop ? "eager" : "lazy"}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
-                  </div>
+              <div className="space-y-2">
+                <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
+                  {section.image ? (
+                    <img
+                      src={section.image}
+                      alt=""
+                      className="w-full h-auto block max-w-full"
+                      loading={section.imageAutoplayLoop ? "eager" : "lazy"}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
+                    </div>
+                  )}
+                </div>
+                {section.imageCaption && (
+                  <p className="text-sm text-white/50 text-center">{section.imageCaption}</p>
                 )}
               </div>
             )}
