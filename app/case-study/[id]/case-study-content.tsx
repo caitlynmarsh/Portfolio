@@ -471,17 +471,18 @@ const caseStudyData = {
   },
   "4": {
     id: 4,
-    company: "Asurion & Ubreakifix",
+    company: "Asurion & uBreakiFix",
     year: "2026",
     title: "Fixing a fragmented experience across systems",
     subtitle: "Bridging teams and systems to create a seamless end-to-end experience",
     role: "Senior Manager, Product Design",
+    team: "4 designers",
     platform: "Mobile app + Desktop app",
     heroGradient: { from: "#1e2d4d", to: "#3d5a80" },
-    heroImage: "/Portfolio/placeholder.svg",
-    problem: { content: "A single repair job spanned multiple tools; systems were fragmented, work was duplicated and sometimes contradictory, and trust in Field app eroded." },
-    solution: { content: "We aligned on a single source of truth and designed a seamless experience that bridged Field app and Portal, requiring cross-team trust and design as neutral ground." },
-    impact: { content: "Teams shifted how they talked about the experience; the work hasn't launched yet but alignment and relationships improved." },
+    heroImage: "/Portfolio/case-study-4-hero.png",
+    problem: { content: "A single repair job spanned multiple tools; systems were fragmented, and work was duplicated and sometimes contradictory." },
+    solution: { content: "We aligned teams and designed a seamless experience that bridged Field app and Portal, requiring cross-team trust and design as neutral ground." },
+    impact: { content: "Teams shifted how they talked about the experience; alignment and cross-functional relationships improved." },
     sections: [
       {
         heading: "Nothing about this experience was end to end, even though the work was",

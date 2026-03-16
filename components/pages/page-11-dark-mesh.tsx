@@ -57,6 +57,7 @@ const caseStudies = [
     quote: "If we're a technology company, why can't our systems talk to each other?",
     imagePosition: "right" as const,
     role: "Senior Manager, Product Design + Lead Designer",
+    image: "/Portfolio/case-study-4-card.png",
   },
   {
     id: 5,
@@ -362,7 +363,7 @@ export function Page11DarkMesh() {
           >
             <Link
               href="/how-i-lead"
-              className="inline-flex items-center justify-center px-6 py-3 border border-white/20 text-base font-medium rounded-md shadow-sm text-white hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-[#0d1117] bg-[#5eead4] hover:bg-[#4ac7b3] transition-colors"
             >
               Read my leadership philosophy
             </Link>
