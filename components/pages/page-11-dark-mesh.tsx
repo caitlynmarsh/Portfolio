@@ -45,6 +45,7 @@ const caseStudies = [
     quote: "Designing with AI is less about capability and more about restraint.",
     imagePosition: "left" as const,
     role: "Senior Manager, Product Design",
+    image: "/Portfolio/smartpitch-card.png",
   },
   {
     id: 4,

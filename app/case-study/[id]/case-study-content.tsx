@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { LayoutGrid, MessageCircle, Sparkles, type LucideIcon } from "lucide-react"
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +12,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useCarousel } from "@/components/ui/carousel"
+
+const calloutCardIcons: Record<string, LucideIcon> = {
+  LayoutGrid,
+  MessageCircle,
+  Sparkles,
+}
 
 function QuotesCarouselControls({ count }: { count: number }) {
   const { api, scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel()
@@ -229,7 +236,7 @@ const caseStudyData = {
     company: "Asurion",
     year: "2025",
     title: "Designing a system that guides behavior instead of policing it",
-    subtitle: "Improving on-time arrival through flow design, not constraints",
+    subtitle: "Improving on-time arrival with a carrot, not a stick",
     role: "Principal Designer",
     platform: "Mobile app",
     heroGradient: { from: "#0d3d56", to: "#1a5f7a" },
@@ -345,7 +352,7 @@ const caseStudyData = {
     team: "1 designer",
     platform: "Mobile app",
     heroGradient: { from: "#3d2c0d", to: "#7a5c1a" },
-    heroImage: "/Portfolio/placeholder.svg",
+    heroImage: "/Portfolio/smartpitch-hero.png",
     problem: { content: "Experts needed strong sales skills; SmartPitch aimed to support them in the moment with tailored guidance without replacing training or crossing into creepy territory." },
     solution: { content: "We designed AI as high-level context and tone guidance rather than scripts, made the AI visible and transparent, and designed within legal and guardrail constraints." },
     impact: { content: "SP100 increased meaningfully in pilots; the work reframed how teams think about AI as thoughtful augmentation. It shaped how we guide teams exploring emerging technology." },
@@ -354,12 +361,17 @@ const caseStudyData = {
         heading: "Sales success depended on skills many experts didn't sign up for",
         content: "Asurion Field experts are deeply knowledgeable about technology and motivated by helping customers. But to be successful in this role, they also need strong sales skills — something many had to develop through extensive and recurring training.",
         additionalContent: "For experts who weren't natural salespeople, this was taxing. Even with training and best practices, translating what they learned into confident, natural conversations in front of a customer was hard — especially under time pressure. The opportunity wasn't to replace training. It was to support experts in the moment, when it mattered most.",
-        visualNote: "Context-setting image or subtle UI crop from the job page, not metrics yet",
-        hasImage: true,
+        asides2: [
+          "Challenge 01: Experts were attracted to this job because they love technology and helping people, but don't always have prior experience selling",
+          "Challenge 02: Customer data was fragmented across systems and difficult to pull meaning out of",
+          "Challenge 03: Because this was a new technology, our Legal team had concerns about how we specifically implemented it",
+        ],
+        hasImage: false,
       },
       {
+        eyebrow: "THE APPROACH",
         heading: "Why AI could help here, and where it couldn't",
-        content: "We have rich customer data available before a field visit, gathered through call center interactions and device context. That made it possible to tailor sales guidance to individual customers in a way static scripts never could.",
+        content: "We have rich customer data available before a field visit, gathered through call center interactions and device context. That made it possible to tailor sales guidance to individual customers in a way static scripts never could.\n\nHowever, that data was fragmented across different systems and databases, which made putting it together into something meaningful a challenge in and of itself. Throughout this project, we partnered closely with the data analytics team to improve how and where our customer data is stored and accessed, so that we could show useful insights within Field app.",
         subsections: [
           {
             subheading: "GenAI offered a way to",
@@ -378,44 +390,41 @@ const caseStudyData = {
             ]
           }
         ],
-        additionalContent: "The goal was never for experts to read from the app. It was to help them internalize guidance and bring it into conversation authentically.",
+        additionalContent: "The goal was never for experts to read directly from the app. It was to help them internalize guidance and bring it into conversation authentically. We would know if we've done our job well if experts actually spend less time viewing Field app while with customers.",
         hasImage: false,
       },
       {
         heading: "The line between \"helpful\" and \"creepy\" was thin",
         content: "Early explorations made one thing clear very quickly: this could go wrong.",
-        additionalContent: "Some early model outputs referenced deeply personal details about customers — how many kids they had, their ages, or specific devices throughout the home. Even if accurate, surfacing that information risked making conversations uncomfortable or unsettling. A feature designed to help experts could just as easily damage trust with customers. This became the central design challenge of the project.",
+        additionalContent: "Some early model outputs referenced deeply personal details about customers — how many kids they had, their ages, or specific devices throughout the home. Even if accurate, surfacing that information risked making conversations uncomfortable or unsettling. \n\n A feature designed to help experts could just as easily damage trust with customers. \n\n This became the central design challenge of the project.",
         hasImage: false,
       },
       {
         heading: "Shaping how AI fit into a human conversation",
-        content: "I worked as Senior Manager, Product Design, overseeing one IC designer. My focus was on product strategy, placement within the Field app, and the detailed UI decisions that shaped how SmartPitch appeared and behaved.",
+        content: "I worked as Senior Manager, Product Design, overseeing one senior designer. My focus was on product strategy, placement within the Field app, and the detailed UI decisions that shaped how SmartPitch appeared and behaved.",
         additionalContent: "I partnered closely with Product, Data Science, Legal, and Engineering to define what insights were appropriate to surface, shape guardrails around tone and specificity, and ensure the experience felt supportive, not prescriptive. Design's role here wasn't just execution — it was judgment.",
         hasImage: false,
       },
       {
+        eyebrow: "THE APPROACH",
         heading: "Designing AI as guidance, not a script",
-        content: "We were intentional about what SmartPitch did not do.",
-        subsections: [
-          {
-            subheading: "Instead of full scripts or overly specific recommendations, we focused on",
-            points: [
-              "High-level customer context that could apply across products",
-              "Tone guidance rather than exact phrasing",
-              "Suggested pitches for a single product, with room to expand later"
-            ]
-          }
+        content: "We were intentional about what SmartPitch did not do. Instead of full scripts or overly specific recommendations, we focused on:",
+        calloutCards: [
+          { icon: "LayoutGrid", text: "High-level customer context that could apply across products" },
+          { icon: "MessageCircle", text: "Tone guidance rather than exact phrasing" },
+          { icon: "Sparkles", text: "Suggested pitches for a single product, with room to expand later" },
         ],
-        additionalContent: "We iterated through pilots, refining prompts so outputs felt distinct enough to be useful without becoming repetitive — and broad enough to stay comfortable in conversation. We also made the AI visible but transparent. Experts were explicitly told the content was GenAI-generated and given guidance on how to use it, helping them trust the information without over-relying on it.",
-        hasImage: false,
+        additionalContent: "We iterated through pilots, refining prompts so outputs felt distinct enough to be useful without becoming repetitive — and broad enough to stay comfortable in conversation. \n\n We also made the AI visible but transparent. Experts were told the content was GenAI-generated and given guidance on how to use it, helping them trust the information without over-relying on it.",
+        hasImage: true,
+        image: "/Portfolio/smartpitch-personas.png",
       },
       {
         heading: "Constraints shaped the experience as much as the technology",
-        content: "Legal review played a significant role in shaping SmartPitch. There were strict requirements around what experts could say, how products could be positioned, and what claims were allowed.",
-        additionalContent: "These constraints influenced the language used in prompts and outputs, how insights were framed, and where SmartPitch appeared in the flow. Rather than fighting those constraints, we designed within them — using structure and clarity to keep the experience safe, compliant, and useful.",
+        content: "Legal review played a significant role in shaping SmartPitch. There were strict requirements around what experts could say, how products could be positioned, and what claims were allowed. These constraints influenced the language used in prompts and outputs, how insights were framed, and where SmartPitch appeared in the flow. \n\n Rather than fighting those constraints, we designed within them — using structure and clarity to keep the experience safe, compliant, and useful.",
         hasImage: false,
       },
       {
+        eyebrow: "THE SOLUTION",
         heading: "How SmartPitch shows up during a job",
         content: "SmartPitch lives directly within the Field app, embedded in the customer's job page.",
         subsections: [
@@ -429,26 +438,33 @@ const caseStudyData = {
           }
         ],
         additionalContent: "The feature is optional, easy to scan, and designed to support — not interrupt — the flow of the job.",
-        visualNote: "This is where your attached image or a cropped version of the SmartPitch UI works best. Avoid over-annotating; let the design speak.",
         hasImage: true,
+        image: "/Portfolio/smartpitch-screens.png",
       },
       {
+        eyebrow: "THE RESULTS",
         heading: "Measurable results in a hard-to-move metric",
         content: "Sales impact was significant.",
-        additionalContent: "Sales per 100 jobs (SP100) — historically a difficult metric to move — increased meaningfully across roles and markets. In pilots where SmartPitch was used, SP100 jumped dramatically compared to jobs without it. Even more telling: only about 9% of eligible jobs had a SmartPitch viewed, suggesting significant upside as usage grows.",
-        visualNote: "Use the chart from your slide here. Let the data carry weight. Minimal surrounding copy.",
-        hasImage: true,
-      },
-      {
-        heading: "What success unlocked next",
-        content: "The success of SmartPitch shifted internal confidence in AI-assisted tools. What started as an experiment is now planned for expansion to additional platforms across the company, supporting other expert roles beyond Field.",
-        additionalContent: "More importantly, it reframed how teams think about AI: not as automation, not as replacement, but as thoughtful augmentation when designed with care.",
+        additionalContent: "Sales per 100 jobs (SP100) — historically a difficult metric to move — increased meaningfully across roles and markets. In pilots where SmartPitch was used, SP100 jumped dramatically compared to jobs without it. \n\n Even more telling: only about 9% of eligible jobs had a SmartPitch viewed, suggesting significant upside as usage grows.",
+        stats: [
+          { value: "33%", label: "increase in sales for full-time experts" },
+          { value: "80%", label: "increase in sales for part-time experts" },
+        ],
+        statsLarge: true,
+        statsCentered: true,
         hasImage: false,
       },
       {
+        heading: "What success unlocked next",
+        content: "The success of SmartPitch shifted internal confidence in AI-assisted tools. What started as an experiment is now planned for expansion to additional platforms across the company, supporting other expert roles beyond Field, and is a key driver for achieving the company's revenue goals for 2026.",
+        additionalContent: "Perhaps more importantly, it reframed how teams think about AI: Not as automation, not as replacement, and not as a chatbot slapped on top of the product, but as thoughtful augmentation when designed with care.",
+        hasImage: false,
+      },
+      {
+        eyebrow: "REFLECTION",
         heading: "Key takeaways from designing with AI",
         content: "This project reinforced that designing with AI is less about capability and more about restraint.",
-        additionalContent: "Concise content, clear guardrails, and transparency mattered more than sophistication. Designing for trust — with both experts and customers — was the real challenge. It was a strong first step in bringing GenAI into Field in a prominent way, and it shaped how I now guide teams exploring emerging technology: start with the human moment, then decide what technology earns a place there.",
+        additionalContent: "Concise content, clear guardrails, and transparency mattered more than sophistication. Designing for trust — with both experts and customers — was the real challenge. \n\n It was a strong first step in bringing GenAI into Field in a prominent way, and it shaped how I now guide teams exploring emerging technology: start with the human moment, then decide what technology earns a place there.",
         hasImage: false,
       }
     ],
@@ -904,6 +920,7 @@ function HeroFadeLayout({
           subsections?: Array<{ subheading: string; points: string[] }>
           stats?: Array<{ label: string; value: string }>
           statsLarge?: boolean
+          statsCentered?: boolean
           quotes?: string[]
           asides?: string[]
           asidesGridCols?: 2 | 3
@@ -926,6 +943,7 @@ function HeroFadeLayout({
           additionalContentImageAfterParagraph?: number
           imageBeforeAdditionalContent?: string
           imageBeforeAdditionalContentSrc?: string
+          calloutCards?: Array<{ icon: string; text: string }>
         }>).map((section, i) => (
           <div
             key={i}
@@ -967,6 +985,24 @@ function HeroFadeLayout({
 
             {section.strikethroughContent && (
               <p className="text-lg text-white/50 leading-relaxed line-through">{section.strikethroughContent}</p>
+            )}
+
+            {section.calloutCards && section.calloutCards.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                {section.calloutCards.map((card, j) => {
+                  const IconComponent = calloutCardIcons[card.icon]
+                  return (
+                    <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4 flex flex-col gap-3 items-start">
+                      {IconComponent && (
+                        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#5eead4]">
+                          <IconComponent className="w-5 h-5" strokeWidth={1.5} />
+                        </div>
+                      )}
+                      <p className="text-sm text-white/70 leading-relaxed">{card.text}</p>
+                    </div>
+                  )
+                })}
+              </div>
             )}
 
             {section.subsections && (
@@ -1083,11 +1119,21 @@ function HeroFadeLayout({
 
             {section.asides2 && section.asides2.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
-                {section.asides2.map((aside, j) => (
-                  <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
-                    <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
-                  </div>
-                ))}
+                {section.asides2.map((aside, j) => {
+                  const challengeMatch = aside.match(/^(Challenge \d+\s*[:\-]\s*)(.*)$/i)
+                  return (
+                    <div key={j} className="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+                      {challengeMatch ? (
+                        <>
+                          <div className="text-sm font-semibold text-white/90 mb-1.5">{challengeMatch[1].replace(/\s*[:\-]\s*$/, "").trim()}</div>
+                          <p className="text-sm text-white/70 leading-relaxed">{challengeMatch[2]}</p>
+                        </>
+                      ) : (
+                        <p className="text-sm text-white/70 leading-relaxed">{aside}</p>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
 
@@ -1128,7 +1174,7 @@ function HeroFadeLayout({
             )}
             
             {section.stats && !section.statsBeforeAdditionalContent && (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 py-10">
+              <div className={`grid gap-10 py-10 ${section.statsCentered ? "grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto" : "grid-cols-1 sm:grid-cols-3"}`}>
                 {section.stats.map((stat, j) => (
                   <div key={j} className="text-center">
                     <div className={`font-serif text-[#5eead4] mb-3 ${section.statsLarge ? "text-6xl md:text-7xl" : "text-5xl"}`}>{stat.value}</div>
