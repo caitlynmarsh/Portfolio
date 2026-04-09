@@ -18,7 +18,7 @@ const caseStudies = [
     year: "2025",
     title: "Redesigning Field app to reduce friction and unlock scale",
     description:
-      "Led a complete product redesign that increased user engagement by 340% and reduced churn by half. Built and scaled a design team from 3 to 12 designers.",
+      "Field app: a redesign with a homepage and bottom navigation that cut expert onboarding from three days to under one.",
     quote: "The new experience fundamentally changed how our users think about their money.",
     imagePosition: "left" as const,
     role: "Sr Manager, Product Design",
@@ -30,7 +30,7 @@ const caseStudies = [
     year: "2025",
     title: "Designing a system that guides behavior instead of policing it",
     description:
-      "Improved on-time arrival rates from 60% to 75% by redesigning the Field app flow to guide expert behavior through clear sequencing rather than blocking actions.",
+      "On-time arrival: a clearer en-route flow and an A/B test that lifted on-time arrivals from about 60% to 75%.",
     quote: "Even experts trying to do the right thing were set up to fail.",
     imagePosition: "right" as const,
     role: "Principal Designer (IC)",
@@ -42,7 +42,7 @@ const caseStudies = [
     year: "2025",
     title: "Using GenAI to increase sales without losing trust",
     description:
-      "Designed SmartPitch, an AI-powered sales guidance tool that increased sales per 100 jobs (SP100) while maintaining customer trust through careful design and transparency.",
+      "SmartPitch: guardrailed in-field GenAI that lifted sales (SP100) without crossing trust lines.",
     quote: "Designing with AI is less about capability and more about restraint.",
     imagePosition: "left" as const,
     role: "Senior Manager, Product Design",
@@ -54,7 +54,7 @@ const caseStudies = [
     year: "2026",
     title: "Fixing a fragmented experience across systems",
     description:
-      "Bridged Field app and Portal teams to create a seamless end-to-end experience for remote technicians, eliminating duplicate data entry and system switching.",
+      "Field and Portal: a linked repair journey so technicians enter information once instead of jumping between systems.",
     quote: "If we're a technology company, why can't our systems talk to each other?",
     imagePosition: "right" as const,
     role: "Senior Manager, Product Design + Lead Designer",
@@ -66,7 +66,7 @@ const caseStudies = [
     year: "2026",
     title: "Designing confidence into equine recovery, one ride at a time",
     description:
-      "Built an iOS app to help riders follow equine rehabilitation plans consistently, reducing cognitive overhead and building confidence through guided execution.",
+      "EvenStride: an iOS app for horse rehab plans with sound and vibration cues you can follow during rides.",
     quote: "The first version didn't need to be good. It just needed to exist.",
     imagePosition: "left" as const,
     role: "Designer & Developer",
@@ -77,7 +77,7 @@ const caseStudies = [
     year: "2026",
     title: "Case Study 6 Title",
     description:
-      "Placeholder description for case study 6. Content will be updated with actual project details.",
+      "Another project write-up is on the way.",
     quote: "Placeholder quote for case study 6.",
     imagePosition: "right" as const,
     role: "Design Role",
@@ -824,7 +824,7 @@ function DetailedCard({ study, index }: { study: (typeof caseStudies)[0]; index:
           {study.title}
         </h3>
         
-        <p className="text-white/40 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">{study.description}</p>
+        <p className="text-white/40 text-sm leading-relaxed mb-4 flex-1">{study.description}</p>
         
         {/* Arrow that appears on hover */}
         <div className="flex items-center gap-2 text-white/40 group-hover:text-[#5eead4] transition-colors duration-300">
