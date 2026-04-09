@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * Serves the static export (out/) so the site works at http://localhost:3000/Portfolio/
- * The build uses basePath /Portfolio, so we serve under that path.
+ * Serves the static export (out/). Match SITE_BASE_PATH to your build (e.g. '' for custom domain, /Portfolio for github.io/repo).
  */
 import fs from 'fs';
 import path from 'path';
@@ -11,15 +10,23 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.join(__dirname, '..', 'out');
 const PORT = Number(process.env.PORT) || 3000;
-const BASE = '/Portfolio';
+const BASE = process.env.SITE_BASE_PATH || '';
 
 function getPath(urlPath) {
   const decoded = decodeURIComponent(new URL(urlPath, 'http://x').pathname);
+  if (!BASE) {
+    const raw = decoded.split('?')[0] || '/';
+    const trimmed = raw.replace(/\/$/, '') || '/';
+    if (trimmed === '/') return path.join(OUT_DIR, 'index.html');
+    const rel = trimmed.replace(/^\//, '');
+    return path.join(OUT_DIR, rel);
+  }
   if (decoded === BASE || decoded === BASE + '/') return path.join(OUT_DIR, 'index.html');
   if (decoded.startsWith(BASE + '/')) {
-    const sub = decoded.slice(BASE.length) || '/';
-    const file = path.join(OUT_DIR, sub.split('?')[0]);
-    return file;
+    const sub = (decoded.slice(BASE.length) || '/').split('?')[0];
+    const rel = sub.replace(/^\//, '').replace(/\/$/, '') || '';
+    if (!rel) return path.join(OUT_DIR, 'index.html');
+    return path.join(OUT_DIR, rel);
   }
   return null;
 }
@@ -59,7 +66,8 @@ const server = createServer((req, res) => {
   const filePath = getPath(req.url);
   if (!filePath) {
     res.writeHead(404);
-    res.end('Open http://localhost:' + PORT + BASE + '/ to preview the site.');
+    const hint = BASE ? BASE + '/' : '/';
+    res.end('Open http://localhost:' + PORT + hint + ' to preview the site.');
     return;
   }
   fs.stat(filePath, (err, stat) => {
@@ -90,6 +98,7 @@ if (!fs.existsSync(OUT_DIR)) {
 }
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log('Preview server running at http://127.0.0.1:' + PORT + BASE + '/');
+  const url = 'http://127.0.0.1:' + PORT + (BASE || '') + (BASE ? '/' : '');
+  console.log('Preview server running at ' + url);
   console.log('Open that URL in your browser to view the site.');
 });

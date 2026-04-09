@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
-// GitHub Pages needs /Portfolio only in the production static export; `next dev` uses /
-const pagesBase = process.env.NODE_ENV === 'production' ? '/Portfolio' : ''
+// Custom domains serve the site at /; github.io/project-name/ needs base path (e.g. /Portfolio). Set SITE_BASE_PATH at build.
+const pagesBase =
+  process.env.NODE_ENV === 'production' ? (process.env.SITE_BASE_PATH ?? '') : ''
 
 const nextConfig = {
   output: 'export', // Static export for GitHub Pages
   basePath: pagesBase,
   assetPrefix: pagesBase,
-  // Static files and img srcs use /Portfolio/... for GitHub Pages; in dev, basePath is '' so map those URLs to public assets
+  env: {
+    NEXT_PUBLIC_SITE_BASE_PATH: pagesBase,
+  },
+  // In dev, map /Portfolio/* to /* so old bookmarked URLs still work locally
   async rewrites() {
     if (process.env.NODE_ENV === 'production') return []
     return [{ source: '/Portfolio/:path*', destination: '/:path*' }]

@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import Link from "next/link"
+import { withBaseAsset } from "@/lib/site-base"
 
 type LayoutVariant = "detailed"
 
@@ -21,7 +22,7 @@ const caseStudies = [
     quote: "The new experience fundamentally changed how our users think about their money.",
     imagePosition: "left" as const,
     role: "Sr Manager, Product Design",
-    image: "/Portfolio/field-app-hero.png",
+    image: withBaseAsset('/field-app-hero.png'),
   },
   {
     id: 2,
@@ -33,7 +34,7 @@ const caseStudies = [
     quote: "Even experts trying to do the right thing were set up to fail.",
     imagePosition: "right" as const,
     role: "Principal Designer (IC)",
-    image: "/Portfolio/ota-card.png",
+    image: withBaseAsset('/ota-card.png'),
   },
   {
     id: 3,
@@ -45,7 +46,7 @@ const caseStudies = [
     quote: "Designing with AI is less about capability and more about restraint.",
     imagePosition: "left" as const,
     role: "Senior Manager, Product Design",
-    image: "/Portfolio/smartpitch-card.png",
+    image: withBaseAsset('/smartpitch-card.png'),
   },
   {
     id: 4,
@@ -57,7 +58,7 @@ const caseStudies = [
     quote: "If we're a technology company, why can't our systems talk to each other?",
     imagePosition: "right" as const,
     role: "Senior Manager, Product Design + Lead Designer",
-    image: "/Portfolio/case-study-4-card.png",
+    image: withBaseAsset('/case-study-4-card.png'),
   },
   {
     id: 5,

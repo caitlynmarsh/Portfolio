@@ -3,9 +3,7 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-
-// Required for GitHub Pages: site is served at /Portfolio/, so image paths must include it
-const BASE_PATH = "/Portfolio"
+import { siteBasePath } from "@/lib/site-base"
 
 export default function AboutPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -140,7 +138,7 @@ export default function AboutPage() {
           >
             <div className="relative aspect-[4/3] md:aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-8">
               <img
-                src={`${BASE_PATH}/about-image.jpg`}
+                src={`${siteBasePath}/about-image.jpg`}
                 alt="Child painting on a wall"
                 className="w-full h-full object-cover"
               />
@@ -223,7 +221,7 @@ export default function AboutPage() {
               {/* Asurion */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/asurion.svg`}
+                  src={`${siteBasePath}/logos/asurion.svg`}
                   alt="Asurion"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -241,7 +239,7 @@ export default function AboutPage() {
               {/* Slack */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/slack.svg`}
+                  src={`${siteBasePath}/logos/slack.svg`}
                   alt="Slack"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -259,7 +257,7 @@ export default function AboutPage() {
               {/* Verizon */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/verizon.svg`}
+                  src={`${siteBasePath}/logos/verizon.svg`}
                   alt="Verizon"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -277,7 +275,7 @@ export default function AboutPage() {
               {/* AT&T */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/att.svg`}
+                  src={`${siteBasePath}/logos/att.svg`}
                   alt="AT&T"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -295,7 +293,7 @@ export default function AboutPage() {
               {/* Deloitte */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/deloitte.svg`}
+                  src={`${siteBasePath}/logos/deloitte.svg`}
                   alt="Deloitte"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -313,7 +311,7 @@ export default function AboutPage() {
               {/* Vaco */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/vaco.svg`}
+                  src={`${siteBasePath}/logos/vaco.svg`}
                   alt="Vaco"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -331,7 +329,7 @@ export default function AboutPage() {
               {/* TVA */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/tva.svg`}
+                  src={`${siteBasePath}/logos/tva.svg`}
                   alt="TVA"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {
@@ -349,7 +347,7 @@ export default function AboutPage() {
               {/* Rand McNally */}
               <div className="flex items-center justify-center h-16">
                 <img
-                  src={`${BASE_PATH}/logos/rand-mcnally.svg`}
+                  src={`${siteBasePath}/logos/rand-mcnally.svg`}
                   alt="Rand McNally"
                   className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity filter brightness-0 invert"
                   onError={(e) => {

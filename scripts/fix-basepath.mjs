@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * Rewrites absolute paths in Next.js static export (out/) for GitHub Pages.
- * The site is served at username.github.io/Portfolio/ but the build outputs
- * paths like /_next/... and /about. This script prefixes them with /Portfolio.
+ * Post-processes HTML/CSS when SITE_BASE_PATH is set (e.g. github.io/repo/).
+ * Custom domain at / uses SITE_BASE_PATH='' and typically needs no rewrites.
  */
 import fs from 'fs';
 import path from 'path';
 
 const OUT_DIR = path.join(process.cwd(), 'out');
-const BASE_PATH = '/Portfolio';
+const BASE_PATH = process.env.SITE_BASE_PATH ?? '';
 const PLACEHOLDER = '__BASE_PATH_PLACEHOLDER__';
 
 // Only rewrite HTML and CSS. Do NOT rewrite .js: it breaks code (e.g. '"/"' becomes '"/Portfolio/"').
@@ -57,6 +57,10 @@ function walk(dir) {
 if (!fs.existsSync(OUT_DIR)) {
   console.error('out/ directory not found. Run pnpm build first.');
   process.exit(1);
+}
+if (!BASE_PATH) {
+  console.log('SITE_BASE_PATH empty; skipping HTML/CSS rewrites.');
+  process.exit(0);
 }
 walk(OUT_DIR);
 console.log('Base path rewrite complete.');

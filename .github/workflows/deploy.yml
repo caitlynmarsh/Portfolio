@@ -30,7 +30,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        env:
+          # Empty: custom domain at site root. Use /Portfolio only for https://<user>.github.io/Portfolio/ without a custom domain.
+          SITE_BASE_PATH: ''
       - run: node scripts/fix-basepath.mjs
+        env:
+          SITE_BASE_PATH: ''
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
