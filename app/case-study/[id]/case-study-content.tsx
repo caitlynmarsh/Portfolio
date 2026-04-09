@@ -262,10 +262,12 @@ const caseStudyData = {
         heading: "A tale of two nearly identical screens",
         content: "The biggest breakdown occurred around two adjacent moments in the flow: \"En route\" and \"I've arrived.\"\n\nThe two screens looked visually similar, used nearly identical interactions, and appeared back-to-back. Under time pressure, experts would sometimes swipe through both without realizing it.",
         hasImage: true,
-        visualNote: "Old en route and arrived screens",
+        image: "/Portfolio/ota-old-screens.png",
+        imageCaption: `Let's play "Spot the difference"`,
         imageAfterSubsections: true,
         additionalContent: "Additionally, Experts had to leave the app to use their navigation, creating a clunky experience. Even for experts who meant well and really wanted to do the right thing, the Field app made it difficult and cumbersome to do. The old flow required them to go from Field app, to Google Maps, back to Field app, BACK to Google Maps, just to complete 1 step \"correctly\".",
         hasImage2: true,
+        image2: "/Portfolio/ota-old-flow.gif",
         visualNote2: "Old flow diagram",
         contentAfterImage2: "App performance issues amplified this. When the app lagged, experts would attempt to swipe \"En route\" again — only for the \"I've arrived\" screen to load in that moment. One extra swipe, and both states were triggered back to back.",
         quote: "Even experts trying to do the right thing were set up to fail.",
@@ -285,18 +287,13 @@ const caseStudyData = {
       },
       {
         heading: "When control feels like the obvious answer — but isn't",
-        content: "Early in the project, our Operations partners came to us with a specific proposal: introduce a screen that would block experts from continuing a job if they arrived too early, outside the appointment window.\n\nOn the surface, this made sense. If early arrival was the problem, prevent it entirely.\n\nFrom an experience perspective, this raised concerns. Blocking progress often just shifts consequences elsewhere in the system. If experts couldn't arrive early, many would inevitably arrive later in the day, compounding delays and frustration.\n\nRather than debate hypotheticals, we A/B tested:",
-        subsections: [
-          {
-            subheading: "",
-            points: [
-              "The hard-blocking timer experience Operations proposed",
-              "A flow-based solution that guided behavior without forcing it",
-            ],
-          },
-        ],
+        content: "Early in the project, our some stakeholders came to us with a specific proposal: introduce a screen that would block experts from continuing a job if they arrived too early, outside the appointment window.\n\nOn the surface, this made sense. If early arrival was the problem, prevent it entirely.\n\nFrom an experience perspective, this raised concerns. Blocking progress often just shifts consequences elsewhere in the system. If experts couldn't arrive early, many would inevitably arrive later in the day, compounding delays and frustration.\n\nRather than debate hypotheticals, we A/B tested two versions.",
         hasImage: true,
-        visualNote: "A/B test screens",
+        imagesSideBySide: ["/Portfolio/ota-ab-test-a.png", "/Portfolio/ota-ab-test-b.png"],
+        imagesSideBySideCaptions: [
+          "Test A: The hard-blocking timer experience our stakeholders proposed",
+          "Test B: A flow-based solution to guide behavior without forcing it",
+        ],
         imageAfterSubsections: true,
         additionalContent: "The results were clear: the blocking experience actually made the metric worse compared to the control by about 4%. Preventing early arrivals pushed experts further behind schedule, increasing late arrivals later in the day and leading to more jobs that had to be canceled entirely.\n\nEvidence replaced assumption — and allowed us to move forward with confidence.",
       },
@@ -306,13 +303,13 @@ const caseStudyData = {
         heading: "Designing clarity into moments where ambiguity caused real damage",
         content: "Rather than adding warnings or confirmations, we focused on making state changes unmistakable — and harder to perform accidentally.\n\nWe redesigned the flow so experts had to explicitly mark themselves \"en route\" before accessing navigation. The customer address was intentionally withheld until that moment, while a map-based view with drive time and ETA still gave experts what they needed to communicate with customers.",
         hasImage: true,
-        visualNote: "New en route and arrived screens",
+        image: "/Portfolio/ota-new-screens.png",
         imageAfterSubsections: true,
         additionalContent: "We also changed the primary action so launching navigation happened after marking \"en route,\" keeping experts in Field long enough to trigger live tracking and customer notifications.\n\nThe goal wasn't to slow experts down. It was to remove ambiguity exactly where ambiguity caused the most harm.",
       },
       {
         eyebrow: "THE RESULT",
-        heading: "Two small changes unlocked a measurable shift",
+        heading: "A few small changes unlocked a measurable shift",
         content: "After launch, on-time arrival improved from roughly 60% to 75%. While still short of our SLA target, this was a significant directional improvement — and a clear signal that behavior and flow design were critical levers.",
         stats: [
           { value: "25%", label: "increase in on-time arrival" },
@@ -930,9 +927,12 @@ function HeroFadeLayout({
           image?: string
           visualNote?: string
           imageCaption?: string
+          imagesSideBySide?: string[]
+          imagesSideBySideCaptions?: string[]
           imageAutoplayLoop?: boolean
           imageAfterSubsections?: boolean
           hasImage2?: boolean
+          image2?: string
           visualNote2?: string
           imageCaption2?: string
           contentAfterImage2?: string
@@ -1028,21 +1028,44 @@ function HeroFadeLayout({
 
             {section.imageAfterSubsections && section.hasImage && (
               <div className="space-y-2">
-                <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
-                  {section.image ? (
-                    <img
-                      src={section.image}
-                      alt=""
-                      className="w-full h-auto block max-w-full"
-                      loading={section.imageAutoplayLoop ? "eager" : "lazy"}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center">
-                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
-                    </div>
-                  )}
-                </div>
+                {section.imagesSideBySide && section.imagesSideBySide.length >= 2 ? (
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
+                    {section.imagesSideBySide.map((src, imgIdx) => {
+                      const sideCaption = section.imagesSideBySideCaptions?.[imgIdx]
+                      return (
+                        <div key={imgIdx} className="space-y-2 min-w-0">
+                          <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 w-full min-w-0">
+                            <img
+                              src={src}
+                              alt=""
+                              className="w-full h-auto block max-w-full"
+                              loading="lazy"
+                            />
+                          </div>
+                          {sideCaption ? (
+                            <p className="text-sm text-white/50 text-center px-0.5 leading-snug">{sideCaption}</p>
+                          ) : null}
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image ? "w-full" : "aspect-[16/10]"}`}>
+                    {section.image ? (
+                      <img
+                        src={section.image}
+                        alt=""
+                        className="w-full h-auto block max-w-full"
+                        loading={section.imageAutoplayLoop ? "eager" : "lazy"}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center">
+                        <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                        <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote ?? ""}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
                 {section.imageCaption && (
                   <p className="text-sm text-white/50 text-center">{section.imageCaption}</p>
                 )}
@@ -1140,11 +1163,20 @@ function HeroFadeLayout({
 
             {section.hasImage2 && (
               <div className="space-y-2">
-                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
-                    <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote2 ?? ""}</p>
-                  </div>
+                <div className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${section.image2 ? "w-full" : "aspect-[16/10]"}`}>
+                  {section.image2 ? (
+                    <img
+                      src={section.image2}
+                      alt=""
+                      className="w-full h-auto block max-w-full"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.visualNote2 ?? ""}</p>
+                    </div>
+                  )}
                 </div>
                 {section.imageCaption2 && (
                   <p className="text-sm text-white/50 text-center">{section.imageCaption2}</p>
