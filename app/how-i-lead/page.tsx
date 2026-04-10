@@ -3,7 +3,15 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { SiteNav } from "@/components/site-nav"
+import { QuotesCarousel } from "@/components/quotes-carousel"
 import { MessageSquare, Lightbulb, Award, Users, Heart } from "lucide-react"
+
+const TEAM_EXPECTATION_TESTIMONIALS = [
+  "Caitlyn is one of the best managers I've ever had. I felt she really cared about me and my growth and gave me specific action items to work on.",
+  "She encourages the team to think more critically and asks thoughtful, pointed questions in a way that challenges each designer to think deeper, not defensively.",
+  "Caitlyn is a collaborative powerhouse who somehow manages to keep every team in sync, but also gives space for designers to work autonomously.",
+  "She's the kind of leader you want in your corner and in your Figma file.",
+]
 
 function Section({
   children,
@@ -105,7 +113,19 @@ export default function HowILeadPage() {
               </p>
             </div>
           </Section>
+        </div>
 
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="w-screen max-w-none bg-white/[0.04] py-12 md:py-16 mb-20 px-8 md:px-16 lg:px-24 -ml-8 md:-ml-16 lg:-ml-24"
+        >
+          <QuotesCarousel quotes={TEAM_EXPECTATION_TESTIMONIALS} />
+        </motion.section>
+
+        <div className="max-w-3xl mx-auto">
           {/* Build bridges */}
           <Section number="03" className="mb-20">
             <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 leading-tight">
