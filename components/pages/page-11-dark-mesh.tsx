@@ -51,7 +51,7 @@ const caseStudies = [
   },
   {
     id: 4,
-    company: "Asurion & Ubreakifix",
+    company: "Asurion & uBreakiFix",
     year: "2026",
     title: "Fixing a fragmented experience across systems",
     description:
@@ -75,7 +75,7 @@ const caseStudies = [
   },
   {
     id: 6,
-    company: "Case Study 6",
+    company: "uBreakiFix",
     year: "2026",
     title: "Coming soon",
     description:

@@ -503,100 +503,147 @@ const caseStudyData = {
     heroImage: withBaseAsset('/case-study-4-hero.png'),
     problem: { content: "A single repair job spanned multiple tools; systems were fragmented, and work was duplicated and sometimes contradictory." },
     solution: { content: "We aligned teams and designed a seamless experience that bridged Field app and Portal, requiring cross-team trust and design as neutral ground." },
-    impact: { content: "Teams shifted how they talked about the experience; alignment and cross-functional relationships improved." },
+    impact: {
+      content: "",
+      subsections: [
+        {
+          subheading: "",
+          points: [
+            "90% reduction in clicks in Portal",
+            "53% reduction in workflow length",
+            "Alignment and cross-functional relationships improved",
+          ],
+        },
+      ],
+    },
     sections: [
       {
+        eyebrow: "THE CONTEXT",
+        heading: "Supporting on-site phone repairs",
+        content: "When Asurion acquired uBreakiFix in 2019, they also acquired the remote tech program — a service where a technician would drive to a customer's home and repair their broken phone at their home. To complete a single repair, technicians rely on several internal systems: the Field app for job execution in the field, NextGen Portal for job management and repair workflows, and several other behind-the-scenes platforms.",
+        additionalContent: "While incredibly convenient and well-loved by customers, these repairs presented a unique challenge to the business and a significant amount of complexity and coordination.",
+        hasImage: false,
+      },
+      {
+        eyebrow: "THE CHALLENGE",
         heading: "Nothing about this experience was end to end, even though the work was",
-        content: "Remote technicians supported customers through complex on-site repairs, but the systems meant to support that work were deeply fragmented. A single job spanned multiple tools: the Field app, the NextGen Portal, Honeycomb, a third-party routing system, and the underlying routing engine.",
-        additionalContent: "Each system had been built with good intentions, but not with each other in mind. For technicians, this meant constantly switching contexts while trying to stay efficient, accurate, and on schedule.",
-        visualNote: "High-level system map showing all tools involved in one job",
+        content:
+          "Remote technicians supported customers through complex on-site phone repairs, but the systems meant to support that work were deeply fragmented. A single job spanned multiple tools: the Field app, NextGen Portal, Honeycomb, a third-party routing system, and the underlying routing engine. A mix of 3rd party and homegrown platforms, each with its own complexities and constraints (not to mention competing roadmaps and priorities).\n\nEach system had been built with good intentions, but not with each other in mind.\n\nFor technicians, this meant constantly switching contexts while trying to stay efficient, accurate, and on schedule.",
+        asides: [
+          "Challenge 01: Multiple teams owned different parts of the experience with different priorities and roadmaps",
+          "Challenge 02: Internal teams often worked in silos without visibility into others' work",
+          "Challenge 03: A 3rd party routing system created subpar routes that Experts blamed on our platforms, even though we had no control over it",
+          "Challenge 04: Experts had to swivel between multiple platforms, often with duplicative steps, in order to complete each customer repair",
+        ],
+        asidesGridCols: 2,
+        imageBeforeAdditionalContent: "Screens of different platforms",
+        hasImage: false,
+      },
+      {
+        heading: "The flow wasn't just duplicated, it was contradictory",
+        content:
+          "Throughout a single repair, technicians were required to enter the same information multiple times. A pre-inspection completed with the customer in Field app had to be re-entered later in Portal just to advance the job.\n\nSwiveling between systems wasn't optional. It was required.\n\nWorse, the systems didn't always agree. Sync issues meant data could be inconsistent, leaving technicians unsure which source of truth to trust. When something couldn't be done in Field app by design, technicians would move to Portal to continue the job anyway, even when the business explicitly didn't want them to.",
+        quote:
+          "If a technician's pay depends on completing more jobs, they'll do whatever the system allows them to do.",
+        contentAfterQuote: "This wasn't malicious. It was rational behavior in a broken system.",
+        visualNote: "Journey map",
         hasImage: true,
       },
       {
-        heading: "The work wasn't just duplicated, it was contradictory",
-        content: "Throughout a single repair, technicians were required to enter the same information multiple times. A pre-inspection completed with the customer in Field app had to be re-entered later in Portal just to advance the job.",
-        additionalContent: "Swiveling between systems wasn't optional. It was required. Worse, the systems didn't always agree. Sync issues meant data could be inconsistent, leaving technicians unsure which source of truth to trust. When something couldn't be done in Field app by design, technicians would move to Portal to continue the job anyway, even when the business explicitly didn't want that behavior. This wasn't malicious. It was rational behavior in a broken system.",
-        quote: "If a technician's pay depends on completing more jobs, they'll do whatever the system allows them to do.",
-        visualNote: "Before-state journey showing multiple system switches and duplicated steps",
-        hasImage: true,
-      },
-      {
-        heading: "Trust eroded even when the problem wasn't Field's fault",
-        content: "One of the most damaging side effects came from routing.",
-        additionalContent: "A third-party system generated inefficient routes that were visualized in Field app. Even though Field wasn't responsible for routing logic, it was the interface technicians interacted with — so it absorbed the blame. Over time, this chipped away at trust in Field app itself. The result was a vicious cycle: more workarounds, more system switching, and less confidence that any single tool could be relied on end to end.",
+        heading: "Trust eroded even when the problem wasn't our fault",
+        content:
+          "One of the most damaging side effects came from routing.\n\nA third-party system generated inefficient routes that were visualized in Field app. Even though Field wasn't responsible for routing logic, it was the interface technicians interacted with — so it absorbed the blame.\n\nOver time, this chipped away at trust in Field app itself.\n\nThe result was a vicious cycle: more workarounds, more system switching, and less confidence that any single tool could be relied on end to end.",
         hasImage: false,
       },
       {
         heading: "A simple question revealed how broken things were",
-        content: "During ride-alongs, one moment stood out again and again.",
-        additionalContent: "Technicians would complete a required phone pre-inspection with the customer in Field app, then walk back to their van and do the exact same inspection again in Portal just to move the job forward. The reaction was consistent. That question became the emotional core of the project.",
-        quote: "If we're a technology company, why can't our systems talk to each other?",
+        content:
+          "During ride-alongs, one moment stood out again and again.\n\nTechnicians would complete a required phone pre-inspection with the customer in their home via Field app, then walk back to their van and do the exact same inspection again in Portal just to move the job forward to repair the customer's device.\n\nOn top of needing to swivel between systems multiple times, our systems often didn't stay in sync with one another. This caused confusion and frustration for Experts who didn't know which system had the correct information when they disagreed.\n\nThe reaction was consistent.",
+        quote:
+          "If we're a technology company, why can't our systems talk to each other?",
+        contentAfterQuote: "That question became the emotional core of the project.",
         hasImage: false,
       },
       {
+        eyebrow: "MY ROLE",
         heading: "I was in a unique position to bridge teams that didn't always trust each other",
-        content: "I worked in a hybrid role as Senior Manager, Product Design and IC at different points in the project. I drove stakeholder alignment and high-level direction while also designing across both Field app and Portal.",
-        additionalContent: "This work required navigating long-standing tension between teams. Historically, the Field and Portal teams had operated in silos, with a degree of distrust on both sides. I was able to bridge that gap because I had spent over six years deeply embedded on the Field app team and had recently moved to the Portal team, where I was actively building relationships. That context allowed me to reframe conversations around the shared customer and technician experience, rather than technical ownership or constraints. Design became the neutral ground.",
-        visualNote: "Service blueprint spanning both systems, used as an alignment artifact",
-        hasImage: true,
+        content:
+          "I worked in a hybrid role as Senior Manager, Product Design and Principal Designer at different points in the project. I drove stakeholder alignment and high-level direction while also designing across both Field app and Portal.\n\nThis work required navigating long-standing tension between teams. Historically, the Field and Portal teams had operated in silos, with a degree of distrust on both sides.\n\nI was able to bridge that gap because I had spent over six years deeply embedded on the Field app team and had recently moved to the Portal team, where I was actively building relationships. That context allowed me to reframe conversations around the shared customer and technician experience, rather than technical ownership or constraints.\n\nDesign became the neutral ground.",
+        hasImage: false,
       },
       {
         heading: "Mapping the journey made the problem impossible to ignore",
-        content: "To ground the work, I created a service blueprint informed by technician interviews, ride-alongs, and stakeholder conversations. This wasn't just a documentation exercise — it was a tool for alignment.",
+        content:
+          "To ground the work, I created a service blueprint informed by technician interviews, ride-alongs, and stakeholder conversations. This wasn't just a documentation exercise — it was a tool for alignment.",
+        imageAfterContent: "Service blueprint",
         subsections: [
           {
             subheading: "Once the entire journey was mapped, two things became clear",
             points: [
               "The number of steps and clicks required to complete a job was staggering",
-              "Technicians were using the systems in ways we hadn't anticipated when the program originally launched in 2020"
-            ]
-          }
+              "Technicians were using the systems in ways we hadn't anticipated when the program originally launched in 2020",
+            ],
+          },
         ],
-        additionalContent: "Seeing the full journey laid out made it impossible to treat these as isolated UI problems.",
-        visualNote: "Condensed service blueprint highlighting swivel points",
-        hasImage: true,
+        additionalContent:
+          "Seeing the full journey laid out made it impossible to treat these as isolated UI problems.",
+        hasImage: false,
       },
       {
+        eyebrow: "THE APPROACH",
         heading: "We couldn't fix everything, so we chose the moments that mattered most",
-        content: "Given the scope, we made a deliberate decision to focus on the core job flow from start to finish. Beginning-of-day and end-of-day tasks like inventory management were intentionally left out of scope for this iteration.",
+        content:
+          "Given the scope, we made a deliberate decision to focus on the core job flow from start to finish. Beginning-of-day and end-of-day tasks like inventory management were intentionally left out of scope for this iteration.",
         subsections: [
           {
             subheading: "The most critical moments to make seamless were",
             points: [
               "Being with the customer",
               "Moving back to the van to complete the repair",
-              "Returning the device to the customer"
-            ]
-          }
+              "Returning the device to the customer",
+            ],
+          },
         ],
-        additionalContent: "We knew we couldn't eliminate every system transition, but we could make them less painful — and more coherent.",
+        additionalContent:
+          "We knew we couldn't eliminate every system transition, but we could make them less painful — and more coherent.",
         hasImage: false,
       },
       {
         heading: "One principle unlocked real change",
         content: "Early on, the teams aligned on a deceptively simple principle:",
         quote: "An expert should never have to enter the same information twice.",
-        additionalContent: "That principle became a powerful guardrail. It forced meaningful changes across systems and shifted conversations from \"what's easiest to build\" to \"what actually helps technicians do their jobs.\"",
+        contentAfterQuote:
+          "That principle became a powerful guardrail.\n\nIt forced meaningful changes across systems and shifted conversations from \"what's easiest to build\" to \"what actually helps technicians do their jobs.\"",
         hasImage: false,
       },
       {
+        eyebrow: "THE SOLUTION",
         heading: "Small fixes with outsized impact",
-        content: "One change in particular had a huge effect.",
-        additionalContent: "Previously, if the issue a customer reported during scheduling didn't perfectly match what the technician discovered on arrival, Field app would block the job. The technician couldn't proceed, and the customer had to book a new appointment. In reality, technicians often fixed the device anyway using unofficial workarounds — creating downstream issues with inventory tracking and store payments. We redesigned the flow to allow technicians to continue the job legitimately when issues differed. This removed a major source of friction, improved the customer experience, and eliminated the need for risky workarounds that had been quietly harming the business.",
-        quote: "What felt like a small fix to technicians required significant internal coordination — and was worth it.",
-        visualNote: "Before/after flow showing the removed hard stop",
+        content:
+          "One change in particular had a huge effect.\n\nPreviously, if the issue a customer reported during scheduling didn't perfectly match what the technician discovered on arrival, Field app would block the job. The technician couldn't proceed, and the customer had to book a new appointment.\n\nIn reality, technicians often fixed the device anyway using unofficial workarounds — creating downstream issues with inventory tracking and store payments. This stemmed from a misalignment around a business decision made years prior — the Field app team had been told to block the job, the Portal team had been told to allow it to continue.\n\nWe redesigned the flow to allow technicians to continue the job legitimately when issues differed. This removed a major source of friction, improved the customer experience, and eliminated the need for risky workarounds that had been quietly harming the business.",
+        quote:
+          "What felt like a small fix to technicians required significant internal coordination — and was worth it.",
+        visualNote: "New flow",
         hasImage: true,
       },
       {
+        eyebrow: "THE RESULTS",
         heading: "Measuring success meant waiting, but confidence was already higher",
-        content: "This work hasn't launched yet, so metrics are still to come. Even without numbers, the impact was clear in how teams talked about the experience.",
-        additionalContent: "There was stronger shared ownership across systems, fewer arguments about \"whose problem this was,\" and more confidence that the product ecosystem could actually support technicians end to end.",
+        content:
+          "This work hasn't launched yet, so metrics are still to come. Even without numbers, the impact was clear in how teams talked about the experience.\n\nThere was stronger shared ownership across systems, fewer arguments about \"whose problem this was,\" and more confidence that the product ecosystem could actually support technicians end to end.",
+        stats: [
+          { value: "90%", label: "reduction in clicks in Portal" },
+          { value: "53%", label: "reduction in workflow length" },
+        ],
+        statsLarge: true,
+        statsBeforeAdditionalContent: true,
         hasImage: false,
       },
       {
+        eyebrow: "REFLECTION",
         heading: "This project reinforced that nothing moves without trust",
-        content: "This work reinforced a simple truth: nothing exists in a vacuum.",
-        additionalContent: "Great design doesn't move forward without strong relationships. Fancy UI means very little if teams aren't aligned enough to build it. Politics, history, and incentives matter just as much as flows and screens. Going forward, I invest earlier in relationships — within and beyond my immediate product team — before pushing hard on strategy or design direction. Alignment isn't a nice-to-have. It's the work.",
+        content:
+          "This work reinforced a simple truth: nothing exists in a vacuum.\n\nGreat design doesn't move forward without strong relationships. Fancy UI means very little if teams aren't aligned enough to build it. Politics, history, and incentives matter just as much as flows and screens.\n\nGoing forward, I invest earlier in relationships — within and beyond my immediate product team — before pushing hard on strategy or design direction. Alignment isn't a nice-to-have. It's the work.",
         hasImage: false,
       }
     ],
@@ -1028,6 +1075,9 @@ function HeroFadeLayout({
           additionalContentImageAfterParagraph?: number
           imageBeforeAdditionalContent?: string
           imageBeforeAdditionalContentSrc?: string
+          /** Placeholder or image directly after section `content`, before asides/subsections */
+          imageAfterContent?: string
+          imageAfterContentSrc?: string
           calloutCards?: Array<{ icon: string; text: string }>
         }>).map((section, i) => (
           <div
@@ -1045,6 +1095,24 @@ function HeroFadeLayout({
                 {section.content.split(/\n\n+/).map((para, idx) => (
                   <p key={idx} className="text-lg text-white/70 leading-relaxed">{para.trim()}</p>
                 ))}
+              </div>
+            )}
+
+            {section.imageAfterContent != null && (
+              <div className="space-y-2">
+                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                  {section.imageAfterContentSrc ? (
+                    <img src={section.imageAfterContentSrc} alt="" className="w-full h-full object-cover block" />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+                      <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
+                      <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.imageAfterContent}</p>
+                    </div>
+                  )}
+                </div>
+                {section.imageAfterContentSrc && section.imageAfterContent && (
+                  <p className="text-sm text-white/50 text-center">{section.imageAfterContent}</p>
+                )}
               </div>
             )}
 
