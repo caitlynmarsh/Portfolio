@@ -192,14 +192,18 @@ export function Page11DarkMesh() {
       </motion.div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen z-10">
+      <section ref={heroRef} className="relative z-10 min-h-0 md:min-h-screen">
         {/* Navigation */}
         <SiteNav />
 
-        {/* Hero Content */}
-        <div className={`relative z-10 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-4xl ${
-          activeLayout === "detailed" ? "min-h-[calc(100vh-200px)]" : "min-h-[calc(100vh-120px)]"
-        }`}>
+        {/* Hero Content — mobile: top-aligned + 50px to case studies; md+: vertically centered */}
+        <div
+          className={`relative z-10 flex flex-col max-md:justify-start max-md:pt-6 max-md:pb-[50px] md:justify-center md:pb-0 px-8 md:px-16 lg:px-24 max-w-4xl max-md:min-h-0 ${
+            activeLayout === "detailed"
+              ? "md:min-h-[calc(100vh-200px)]"
+              : "md:min-h-[calc(100vh-120px)]"
+          }`}
+        >
           <motion.h1
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
@@ -626,7 +630,7 @@ function ColumnsLayout() {
 
   // Mobile: single column, top-to-bottom order 1–6 (case study id). Desktop keeps staggered two-column layout.
   return (
-    <div className="-mt-[calc(15vh+20px)] md:-mt-[calc(20vh+20px)] px-8 md:px-16 lg:px-24">
+    <div className="max-md:mt-0 md:-mt-[calc(20vh+20px)] px-8 md:px-16 lg:px-24">
       {/* Mobile: single column */}
       <div className="flex justify-end md:hidden">
         <div className="w-full flex flex-col gap-5">
@@ -714,7 +718,7 @@ function DetailedColumnsLayout() {
   const rightColumn = [caseStudies[0], caseStudies[2], caseStudies[4]]
 
   return (
-    <div className="-mt-[calc(15vh+100px)] md:-mt-[calc(20vh+100px)] px-8 md:px-16 lg:px-24">
+    <div className="max-md:mt-0 md:-mt-[calc(20vh+100px)] px-8 md:px-16 lg:px-24">
       {/* Mobile: single column, order 1–6. Desktop: unchanged two columns. */}
       <div className="flex justify-end md:hidden">
         <div className="w-full flex flex-col gap-5">
