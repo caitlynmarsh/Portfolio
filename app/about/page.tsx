@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-import { siteBasePath } from "@/lib/site-base"
+import { siteBasePath, withBaseAsset } from "@/lib/site-base"
 
 export default function AboutPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -114,7 +114,7 @@ export default function AboutPage() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="/resume.pdf"
+                href={withBaseAsset("/resume.pdf")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 bg-[#5eead4] text-[#0d1117] font-medium rounded-lg hover:bg-[#5eead4]/90 transition-colors"
