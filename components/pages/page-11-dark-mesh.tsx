@@ -624,15 +624,13 @@ function ColumnsLayout() {
   const leftColumn = [caseStudies[1], caseStudies[3], caseStudies[5]]
   const rightColumn = [caseStudies[0], caseStudies[2], caseStudies[4]]
 
-  // For mobile, combine all cards into single column
-  const allCards = [...leftColumn, ...rightColumn]
-
+  // Mobile: single column, top-to-bottom order 1–6 (case study id). Desktop keeps staggered two-column layout.
   return (
     <div className="-mt-[calc(15vh+20px)] md:-mt-[calc(20vh+20px)] px-8 md:px-16 lg:px-24">
       {/* Mobile: single column */}
       <div className="flex justify-end md:hidden">
         <div className="w-full flex flex-col gap-5">
-          {allCards.map((study, index) => (
+          {caseStudies.map((study, index) => (
             <motion.div
               key={`mobile-${index}`}
               initial={{ opacity: 0, y: 40 }}
@@ -714,14 +712,13 @@ function DetailedColumnsLayout() {
   // Right column: case studies 1, 3, 5 (indices 0, 2, 4)
   const leftColumn = [caseStudies[1], caseStudies[3], caseStudies[5]]
   const rightColumn = [caseStudies[0], caseStudies[2], caseStudies[4]]
-  const allCards = [...leftColumn, ...rightColumn]
 
   return (
     <div className="-mt-[calc(15vh+100px)] md:-mt-[calc(20vh+100px)] px-8 md:px-16 lg:px-24">
-      {/* Mobile: single column - initial visible so cards show without relying on whileInView */}
+      {/* Mobile: single column, order 1–6. Desktop: unchanged two columns. */}
       <div className="flex justify-end md:hidden">
         <div className="w-full flex flex-col gap-5">
-          {allCards.map((study, index) => (
+          {caseStudies.map((study, index) => (
             <motion.div
               key={`mobile-detail-${index}`}
               initial={{ opacity: 1, y: 0 }}
