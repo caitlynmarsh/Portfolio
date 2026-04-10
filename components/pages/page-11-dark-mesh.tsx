@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import Link from "next/link"
 import { withBaseAsset } from "@/lib/site-base"
+import { SiteNav } from "@/components/site-nav"
 
 type LayoutVariant = "detailed"
 
@@ -193,32 +194,7 @@ export function Page11DarkMesh() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen z-10">
         {/* Navigation */}
-        <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8">
-          <motion.span
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-white/90 text-sm uppercase tracking-widest"
-          >
-            Caitlyn Marsh
-          </motion.span>
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex gap-8"
-          >
-            <Link href="/#work" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-              Work
-            </Link>
-            <Link href="/how-i-lead" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-              How I lead
-            </Link>
-            <Link href="/about" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-              About
-            </Link>
-          </motion.div>
-        </nav>
+        <SiteNav />
 
         {/* Hero Content */}
         <div className={`relative z-10 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-4xl ${

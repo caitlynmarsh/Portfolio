@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { siteBasePath, withBaseAsset } from "@/lib/site-base"
+import { SiteNav } from "@/components/site-nav"
 
 export default function AboutPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -67,35 +68,7 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
-      {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8">
-        <motion.span
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-white/90 text-sm uppercase tracking-widest"
-        >
-          <Link href="/" className="hover:text-[#5eead4] transition-colors">
-            Caitlyn Marsh
-          </Link>
-        </motion.span>
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex gap-8"
-        >
-          <Link href="/#work" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-            Work
-          </Link>
-          <Link href="/how-i-lead" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-            How I lead
-          </Link>
-          <Link href="/about" className="text-white hover:text-[#5eead4] text-sm uppercase tracking-wider transition-colors">
-            About
-          </Link>
-        </motion.div>
-      </nav>
+      <SiteNav active="about" />
 
       {/* Content */}
       <div ref={heroRef} className="relative z-10 px-8 md:px-16 lg:px-24 py-16 md:py-24">

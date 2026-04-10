@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { SiteNav } from "@/components/site-nav"
 import { MessageSquare, Lightbulb, Award, Users, Heart } from "lucide-react"
 
 function Section({
@@ -44,25 +45,7 @@ function Aside({ children }: { children: React.ReactNode }) {
 export default function HowILeadPage() {
   return (
     <div className="bg-[#0d1117] min-h-screen text-white">
-      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8 border-b border-white/10">
-        <Link
-          href="/"
-          className="text-white/90 text-sm uppercase tracking-widest hover:text-[#5eead4] transition-colors"
-        >
-          Caitlyn Marsh
-        </Link>
-        <div className="flex gap-8">
-          <Link href="/#work" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-            Work
-          </Link>
-          <Link href="/how-i-lead" className="text-white hover:text-[#5eead4] text-sm uppercase tracking-wider transition-colors">
-            How I lead
-          </Link>
-          <Link href="/about" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
-            About
-          </Link>
-        </div>
-      </nav>
+      <SiteNav active="how-i-lead" className="border-b border-white/10" />
 
       <main className="px-8 md:px-16 lg:px-24 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
