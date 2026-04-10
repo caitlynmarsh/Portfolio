@@ -120,9 +120,16 @@ export default function HowILeadPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="w-screen max-w-none bg-white/[0.04] py-12 md:py-16 mb-20 px-8 md:px-16 lg:px-24 -ml-8 md:-ml-16 lg:-ml-24"
+          className="-mx-8 md:-mx-16 lg:-mx-24 max-w-none bg-white/[0.04] py-12 md:py-16 mb-20 overflow-x-clip"
         >
-          <QuotesCarousel quotes={TEAM_EXPECTATION_TESTIMONIALS} />
+          <QuotesCarousel
+            quotes={TEAM_EXPECTATION_TESTIMONIALS}
+            slidesPerView={2}
+            showDots={false}
+            pairInitialLeadInset
+            pairTrailingMargin
+            loop={false}
+          />
         </motion.section>
 
         <div className="max-w-3xl mx-auto">

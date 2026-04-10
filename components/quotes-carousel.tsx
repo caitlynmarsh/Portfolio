@@ -9,41 +9,61 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useCarousel } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils"
 
-function QuotesCarouselControls({ count }: { count: number }) {
+function QuotesCarouselControls({
+  count,
+  showDots,
+  pair,
+}: {
+  count: number
+  showDots: boolean
+  pair: boolean
+}) {
   const { api, scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel()
   const [selectedIndex, setSelectedIndex] = useState(0)
   useEffect(() => {
-    if (!api) return
+    if (!showDots || !api) return
     const onSelect = () => setSelectedIndex(api.selectedScrollSnap())
     onSelect()
     api.on("select", onSelect)
     return () => {
       api.off("select", onSelect)
     }
-  }, [api])
+  }, [api, showDots])
+  const viewportCenterArrows = pair && !showDots
   return (
-    <div className="flex items-center justify-center gap-4 mt-6">
+    <div
+      className={cn(
+        "flex items-center justify-center mt-6",
+        showDots ? "gap-4" : "gap-8",
+        pair && "px-4 md:px-6",
+        viewportCenterArrows &&
+          "w-screen max-w-[100vw] relative left-1/2 -translate-x-1/2"
+      )}
+    >
       <CarouselPrevious
         className="!static !left-0 !top-0 !-translate-x-0 !-translate-y-0 border-white/20 bg-white/5 hover:bg-white/10 text-white hover:text-white disabled:opacity-40"
         variant="outline"
         size="icon"
       />
-      <div className="flex items-center gap-2">
-        {Array.from({ length: count }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => api?.scrollTo(i)}
-            aria-label={`Go to quote ${i + 1}`}
-            className={`rounded-full transition-all duration-200 ${
-              i === selectedIndex
-                ? "bg-[#5eead4] w-2.5 h-2.5"
-                : "bg-white/30 hover:bg-white/50 w-2 h-2"
-            }`}
-          />
-        ))}
-      </div>
+      {showDots ? (
+        <div className="flex items-center gap-2">
+          {Array.from({ length: count }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => api?.scrollTo(i)}
+              aria-label={`Go to quote ${i + 1}`}
+              className={`rounded-full transition-all duration-200 ${
+                i === selectedIndex
+                  ? "bg-[#5eead4] w-2.5 h-2.5"
+                  : "bg-white/30 hover:bg-white/50 w-2 h-2"
+              }`}
+            />
+          ))}
+        </div>
+      ) : null}
       <CarouselNext
         className="!static !right-0 !top-0 !translate-x-0 !-translate-y-0 border-white/20 bg-white/5 hover:bg-white/10 text-white hover:text-white disabled:opacity-40"
         variant="outline"
@@ -53,17 +73,74 @@ function QuotesCarouselControls({ count }: { count: number }) {
   )
 }
 
+export type QuotesCarouselProps = {
+  quotes: string[]
+  /** 1 = one quote per view (case studies). 2 = two quotes side-by-side; arrows advance by pair. */
+  slidesPerView?: 1 | 2
+  /** Default true; set false for prev/next only. */
+  showDots?: boolean
+  /** With `slidesPerView={2}`: extra left inset at scroll start only (padding scrolls off when advancing). */
+  pairInitialLeadInset?: boolean
+  /** With `slidesPerView={2}`: extra margin after the last quote (scroll track end). */
+  pairTrailingMargin?: boolean
+  /** Infinite wrap; set false for linear prev/next only. Default true. */
+  loop?: boolean
+}
+
 /** Same carousel UI as multi-quote sections on case studies (e.g. case study 1). */
-export function QuotesCarousel({ quotes }: { quotes: string[] }) {
+export function QuotesCarousel({
+  quotes,
+  slidesPerView = 1,
+  showDots = true,
+  pairInitialLeadInset = false,
+  pairTrailingMargin = false,
+  loop = true,
+}: QuotesCarouselProps) {
   if (!quotes.length) return null
+  const pair = slidesPerView === 2
+  const lastIndex = quotes.length - 1
   return (
     <div className="relative w-full">
-      <Carousel opts={{ align: "start", loop: true }} className="w-full">
-        <CarouselContent className="-ml-0 gap-4">
+      <Carousel
+        opts={
+          pair
+            ? {
+                align: "start",
+                loop,
+                slidesToScroll: 2,
+                // false lets the next slide peek; with loop off, trimSnaps removes empty space after the last slide.
+                containScroll: loop ? false : "trimSnaps",
+              }
+            : { align: "start", loop }
+        }
+        className="w-full"
+      >
+        <CarouselContent
+          className={cn(pair ? "-ml-5 md:-ml-6" : "-ml-0 gap-4")}
+        >
           {quotes.map((quote, j) => (
-            <CarouselItem key={j} className="pl-4 pr-4 basis-[88%] min-w-0 shrink-0 md:basis-[90%]">
-              <div className="bg-white/5 border border-white/10 rounded-xl px-6 py-8 md:px-10 md:py-10">
-                <p className="text-lg md:text-xl lg:text-2xl font-serif text-white/90 italic leading-relaxed">
+            <CarouselItem
+              key={j}
+              className={cn(
+                "min-w-0 shrink-0",
+                !pair && "pl-4 pr-4 basis-[88%] md:basis-[90%]",
+                pair && "pl-5 md:pl-6 basis-[43%]",
+                pair && pairInitialLeadInset && j === 0 && "ml-10 md:ml-20 lg:ml-32",
+                pair && pairTrailingMargin && j === lastIndex && "mr-8 md:mr-16 lg:mr-20"
+              )}
+            >
+              <div
+                className={cn(
+                  "bg-white/5 border border-white/10 rounded-xl h-full",
+                  pair ? "px-4 py-6 md:px-6 md:py-8" : "px-6 py-8 md:px-10 md:py-10"
+                )}
+              >
+                <p
+                  className={cn(
+                    "font-serif text-white/90 italic leading-relaxed",
+                    pair ? "text-base md:text-lg lg:text-xl" : "text-lg md:text-xl lg:text-2xl"
+                  )}
+                >
                   {quote.includes(" — ") ? (
                     <>
                       "{quote.split(" — ")[0]}"
@@ -80,7 +157,7 @@ export function QuotesCarousel({ quotes }: { quotes: string[] }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <QuotesCarouselControls count={quotes.length} />
+        <QuotesCarouselControls count={quotes.length} showDots={showDots} pair={pair} />
       </Carousel>
     </div>
   )
