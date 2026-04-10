@@ -70,17 +70,19 @@ const caseStudies = [
     quote: "The first version didn't need to be good. It just needed to exist.",
     imagePosition: "left" as const,
     role: "Designer & Developer",
+    image: withBaseAsset('/evenstride-card.png'),
   },
   {
     id: 6,
     company: "Case Study 6",
     year: "2026",
-    title: "Case Study 6 Title",
+    title: "Coming soon",
     description:
       "Another project write-up is on the way.",
     quote: "Placeholder quote for case study 6.",
     imagePosition: "right" as const,
     role: "Design Role",
+    image: withBaseAsset('/case-study-6-card.png'),
   },
 ]
 
@@ -209,6 +211,9 @@ export function Page11DarkMesh() {
             <Link href="/#work" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
               Work
             </Link>
+            <Link href="/how-i-lead" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
+              How I lead
+            </Link>
             <Link href="/about" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
               About
             </Link>
@@ -223,7 +228,7 @@ export function Page11DarkMesh() {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-serif text-5xl md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
+            className="font-serif text-5xl max-[389px]:text-[2.5rem] md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
           >
             {"Product design leader"}
             <br className="hidden md:block" />

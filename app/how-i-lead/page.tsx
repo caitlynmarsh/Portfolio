@@ -55,6 +55,9 @@ export default function HowILeadPage() {
           <Link href="/#work" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
             Work
           </Link>
+          <Link href="/how-i-lead" className="text-white hover:text-[#5eead4] text-sm uppercase tracking-wider transition-colors">
+            How I lead
+          </Link>
           <Link href="/about" className="text-white/70 hover:text-white text-sm uppercase tracking-wider transition-colors">
             About
           </Link>

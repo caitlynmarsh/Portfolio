@@ -63,6 +63,29 @@ function QuotesCarouselControls({ count }: { count: number }) {
   )
 }
 
+/**
+ * Case study 6 (`/case-study/6`): when true, show a “coming soon” page instead of the full
+ * `HeroFadeLayout` article. Set to `false` to restore the normal case study — `caseStudyData["6"]`
+ * and the main return below stay unchanged; no other edits needed.
+ */
+const CASE_STUDY_6_USE_PLACEHOLDER_PAGE = true
+
+/**
+ * While true, case study 5 sends “Next” (header + bottom section) to case study 1 instead of 6.
+ * Set to `false` for normal order (5 → 6).
+ */
+const CASE_STUDY_5_NEXT_TARGETS_CASE_STUDY_1 = true
+
+/*
+ * --- Restore full case study 6 (when you’re ready) ---
+ * 1. Set CASE_STUDY_6_USE_PLACEHOLDER_PAGE to false above.
+ * 2. The default export will again render HeroFadeLayout with caseStudyData["6"] like studies 1–5.
+ * ---------------------------------------------------------------------------------------------
+ * Normal case study 6 page (not run while placeholder is true): same shell as other IDs —
+ * fixed header, then <motion.div><HeroFadeLayout study={study} nextId={nextId} nextStudy={…} /></motion.div>
+ * with study === caseStudyData["6"].
+ */
+
 const caseStudyData = {
   "1": {
     id: 1,
@@ -587,7 +610,7 @@ const caseStudyData = {
     role: "Designer & Developer",
     platform: "iOS app",
     heroGradient: { from: "#0d3d2a", to: "#1a5c45" },
-    heroImage: withBaseAsset('/placeholder.svg'),
+    heroImage: withBaseAsset('/evenstride-hero.png'),
     problem: { content: "Rehab plans were simple on paper but hard to follow in practice; cognitive overhead and consistency mattered for equine recovery." },
     solution: { content: "I built an iOS MVP—rehab plan builder and guided execution—using vibe coding (Cursor, Xcode), with sound/haptics for in-motion use." },
     impact: { content: "A usable app for consistent rehab rides; expanded how I think about exploration, iteration, and the barrier between idea and artifact." },
@@ -687,6 +710,54 @@ const caseStudyData = {
   },
 }
 
+/** Under-construction view for `/case-study/6` while CASE_STUDY_6_USE_PLACEHOLDER_PAGE is true. */
+function CaseStudy6PlaceholderPage({ prevId, nextId }: { prevId: number; nextId: number }) {
+  return (
+    <div className="min-h-screen bg-[#0d1117] text-white">
+      <div className="fixed top-0 left-0 right-0 bg-[#0d1117]/80 backdrop-blur-md border-b border-white/10 z-40">
+        <div className="flex items-center justify-between px-8 md:px-16 py-6">
+          <Link href="/" className="text-white/90 hover:text-[#5eead4] transition-colors group" aria-label="Close">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href={`/case-study/${prevId}`}
+              className="text-white/60 text-xs uppercase tracking-wider hover:text-[#5eead4] transition-colors"
+            >
+              ← Previous
+            </Link>
+            <Link
+              href={`/case-study/${nextId}`}
+              className="text-white/60 text-xs uppercase tracking-wider hover:text-[#5eead4] transition-colors"
+            >
+              Next →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <main className="px-8 md:px-16 lg:px-24 pt-32 pb-24 flex flex-col items-center justify-center min-h-[75vh]">
+        <p className="text-[#5eead4] text-sm uppercase tracking-widest mb-4">Case study 6</p>
+        <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white text-center text-balance mb-6">
+          This write-up is still in progress
+        </h1>
+        <p className="text-lg text-white/60 text-center max-w-xl leading-relaxed mb-10">
+          The full case study isn&apos;t published yet. Check back soon, or browse another project using
+          the links above.
+        </p>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-[#5eead4] text-sm uppercase tracking-widest hover:underline"
+        >
+          Back to portfolio
+        </Link>
+      </main>
+    </div>
+  )
+}
+
 export default function CaseStudyContent({ studyId }: { studyId: string }) {
   // Add safety check
   if (!studyId) {
@@ -737,8 +808,20 @@ export default function CaseStudyContent({ studyId }: { studyId: string }) {
   const allIds = Object.keys(caseStudyData).map(Number).sort((a, b) => a - b)
   const currentIndex = allIds.indexOf(currentId)
   const prevId = currentIndex > 0 ? allIds[currentIndex - 1] : allIds[allIds.length - 1]
-  const nextId = currentIndex < allIds.length - 1 ? allIds[currentIndex + 1] : allIds[0]
+  let nextId = currentIndex < allIds.length - 1 ? allIds[currentIndex + 1] : allIds[0]
+  if (CASE_STUDY_5_NEXT_TARGETS_CASE_STUDY_1 && currentId === 5) {
+    nextId = 1
+  }
 
+  /*
+   * Case study 6 — placeholder page. Toggle CASE_STUDY_6_USE_PLACEHOLDER_PAGE at top of file to
+   * restore the standard layout (comment block there describes the normal return).
+   */
+  if (studyId === "6" && CASE_STUDY_6_USE_PLACEHOLDER_PAGE) {
+    return <CaseStudy6PlaceholderPage prevId={prevId} nextId={nextId} />
+  }
+
+  // Standard case study page (includes study 6 when CASE_STUDY_6_USE_PLACEHOLDER_PAGE is false):
   return (
     <div className="min-h-screen bg-[#0d1117] text-white">
       {/* Fixed Header */}
