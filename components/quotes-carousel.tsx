@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useSyncExternalStore } from "react"
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +10,19 @@ import {
 } from "@/components/ui/carousel"
 import { useCarousel } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
+
+/** Tailwind `md` — two-up pair layout; below this, pair carousels show one slide at a time. */
+function useMdUp() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia("(min-width: 768px)")
+      mq.addEventListener("change", onChange)
+      return () => mq.removeEventListener("change", onChange)
+    },
+    () => window.matchMedia("(min-width: 768px)").matches,
+    () => true
+  )
+}
 
 function QuotesCarouselControls({
   count,
@@ -98,25 +111,35 @@ export function QuotesCarousel({
 }: QuotesCarouselProps) {
   if (!quotes.length) return null
   const pair = slidesPerView === 2
+  const mdUp = useMdUp()
+  const pairDesktop = pair && mdUp
   const lastIndex = quotes.length - 1
   return (
     <div className="relative w-full">
       <Carousel
+        key={pair ? (mdUp ? "pair-md" : "pair-sm") : "single"}
         opts={
           pair
-            ? {
-                align: "start",
-                loop,
-                slidesToScroll: 2,
-                // false lets the next slide peek; with loop off, trimSnaps removes empty space after the last slide.
-                containScroll: loop ? false : "trimSnaps",
-              }
+            ? pairDesktop
+              ? {
+                  align: "start",
+                  loop,
+                  slidesToScroll: 2,
+                  containScroll: loop ? false : "trimSnaps",
+                }
+              : {
+                  align: "start",
+                  loop: false,
+                  slidesToScroll: 1,
+                  // Like desktop pair: allow a sliver of the next slide; trimSnaps hides that peek.
+                  containScroll: false,
+                }
             : { align: "start", loop }
         }
         className="w-full"
       >
         <CarouselContent
-          className={cn(pair ? "-ml-5 md:-ml-6" : "-ml-0 gap-4")}
+          className={cn(pairDesktop ? "-ml-5 md:-ml-6" : "-ml-0 gap-4")}
         >
           {quotes.map((quote, j) => (
             <CarouselItem
@@ -124,21 +147,26 @@ export function QuotesCarousel({
               className={cn(
                 "min-w-0 shrink-0",
                 !pair && "pl-4 pr-4 basis-[88%] md:basis-[90%]",
-                pair && "pl-5 md:pl-6 basis-[43%]",
-                pair && pairInitialLeadInset && j === 0 && "ml-10 md:ml-20 lg:ml-32",
+                pair && !pairDesktop && "pl-4 pr-4 basis-[80%]",
+                pairDesktop && "pl-5 md:pl-6 basis-[43%]",
+                pair && pairInitialLeadInset && j === 0 && "ml-8 md:ml-20 lg:ml-32",
                 pair && pairTrailingMargin && j === lastIndex && "mr-8 md:mr-16 lg:mr-20"
               )}
             >
               <div
                 className={cn(
                   "bg-white/5 border border-white/10 rounded-xl h-full",
-                  pair ? "px-4 py-6 md:px-6 md:py-8" : "px-6 py-8 md:px-10 md:py-10"
+                  pairDesktop && "px-4 py-6 md:px-6 md:py-8",
+                  pair && !pairDesktop && "px-6 py-8",
+                  !pair && "px-6 py-8 md:px-10 md:py-10"
                 )}
               >
                 <p
                   className={cn(
                     "font-serif text-white/90 italic leading-relaxed",
-                    pair ? "text-base md:text-lg lg:text-xl" : "text-lg md:text-xl lg:text-2xl"
+                    pairDesktop && "text-base md:text-lg lg:text-xl",
+                    pair && !pairDesktop && "text-lg",
+                    !pair && "text-lg md:text-xl lg:text-2xl"
                   )}
                 >
                   {quote.includes(" — ") ? (
