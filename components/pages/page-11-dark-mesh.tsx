@@ -204,7 +204,7 @@ export function Page11DarkMesh() {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-serif text-5xl max-[389px]:text-[2.5rem] md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
+            className="font-serif text-5xl max-[400px]:text-[2.5rem] md:text-6xl lg:text-7xl text-[#5eead4] mb-6"
           >
             {"Product design leader"}
             <br className="hidden md:block" />
