@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { withBaseAsset } from "@/lib/site-base"
@@ -18,6 +18,51 @@ const calloutCardIcons: Record<string, LucideIcon> = {
   LayoutGrid,
   MessageCircle,
   Sparkles,
+}
+
+/** Plays when scrolled into view; paused when off-screen. Muted so autoplay policy allows play(); user can unmute via controls. */
+function ScrollAutoplayVideo({
+  src,
+  poster,
+  className,
+}: {
+  src: string
+  poster?: string
+  className?: string
+}) {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void el.play().catch(() => {})
+        } else {
+          el.pause()
+        }
+      },
+      { threshold: 0.35 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [src])
+
+  return (
+    <video
+      ref={ref}
+      className={className}
+      controls
+      playsInline
+      muted
+      preload="metadata"
+      poster={poster}
+    >
+      <source src={src} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  )
 }
 
 function QuotesCarouselControls({ count }: { count: number }) {
@@ -520,8 +565,11 @@ const caseStudyData = {
       {
         eyebrow: "THE CONTEXT",
         heading: "Supporting on-site phone repairs",
-        content: "When Asurion acquired uBreakiFix in 2019, they also acquired the remote tech program — a service where a technician would drive to a customer's home and repair their broken phone at their home. To complete a single repair, technicians rely on several internal systems: the Field app for job execution in the field, NextGen Portal for job management and repair workflows, and several other behind-the-scenes platforms.",
-        additionalContent: "While incredibly convenient and well-loved by customers, these repairs presented a unique challenge to the business and a significant amount of complexity and coordination.",
+        content:
+          "When Asurion acquired uBreakiFix in 2019, they also acquired the remote tech program — a service where a technician would drive to a customer's home and repair their broken phone at their home. To complete a single repair, technicians rely on several internal systems: the Field app for job execution in the field, NextGen Portal for job management and repair workflows, and several other behind-the-scenes platforms.\n\nWhile incredibly convenient and well-loved by customers, these repairs presented a unique challenge to the business and a significant amount of complexity and coordination.",
+        imageAfterContent:
+          "uBreakiFix by Asurion technician with a customer after an on-site mobile repair visit.",
+        imageAfterContentSrc: withBaseAsset("/case-study-4-context-van.png"),
         hasImage: false,
       },
       {
@@ -536,24 +584,26 @@ const caseStudyData = {
           "Challenge 04: Experts had to swivel between multiple platforms, often with duplicative steps, in order to complete each customer repair",
         ],
         asidesGridCols: 2,
-        imageBeforeAdditionalContent: "Screens of different platforms",
+        imageBeforeAdditionalContent: "Several of the internal and external platforms required to complete a single repair",
+        imageBeforeAdditionalContentSrc: withBaseAsset("/case-study-4-platforms-workflow.png"),
+        imageBeforeAdditionalContentPreserveAspect: true,
         hasImage: false,
       },
       {
         heading: "The flow wasn't just duplicated, it was contradictory",
         content:
-          "Throughout a single repair, technicians were required to enter the same information multiple times. A pre-inspection completed with the customer in Field app had to be re-entered later in Portal just to advance the job.\n\nSwiveling between systems wasn't optional. It was required.\n\nWorse, the systems didn't always agree. Sync issues meant data could be inconsistent, leaving technicians unsure which source of truth to trust. When something couldn't be done in Field app by design, technicians would move to Portal to continue the job anyway, even when the business explicitly didn't want them to.",
-        quote:
-          "If a technician's pay depends on completing more jobs, they'll do whatever the system allows them to do.",
-        contentAfterQuote: "This wasn't malicious. It was rational behavior in a broken system.",
-        visualNote: "Journey map",
+          "Throughout a single repair, technicians were required to enter the same information multiple times. A pre-inspection completed with the customer in Field app had to be re-entered later in Portal just to advance the job.\n\nSwiveling between systems wasn't optional. It was required.\n\nWorse, the systems didn't always agree. Sync issues meant data could be inconsistent, leaving technicians unsure which source of truth to trust. When something couldn't be done in Field app by design, technicians would move to Portal to continue the job anyway, even when the business explicitly didn't want them to.\n\nIf a technician's pay depends on completing more jobs, they'll do whatever the system allows them to do.\n\nThis wasn't malicious. It was rational behavior in a broken system.",
+        image: withBaseAsset("/case-study-4-journey-map.png"),
+        imageCaption: "Journey map",
         hasImage: true,
       },
       {
         heading: "Trust eroded even when the problem wasn't our fault",
         content:
           "One of the most damaging side effects came from routing.\n\nA third-party system generated inefficient routes that were visualized in Field app. Even though Field wasn't responsible for routing logic, it was the interface technicians interacted with — so it absorbed the blame.\n\nOver time, this chipped away at trust in Field app itself.\n\nThe result was a vicious cycle: more workarounds, more system switching, and less confidence that any single tool could be relied on end to end.",
-        hasImage: false,
+        image: withBaseAsset("/case-study-4-trust-field-app-van.png"),
+        imageCaption: "Field app in the vehicle",
+        hasImage: true,
       },
       {
         heading: "A simple question revealed how broken things were",
@@ -576,6 +626,8 @@ const caseStudyData = {
         content:
           "To ground the work, I created a service blueprint informed by technician interviews, ride-alongs, and stakeholder conversations. This wasn't just a documentation exercise — it was a tool for alignment.",
         imageAfterContent: "Service blueprint",
+        imageAfterContentSrc: withBaseAsset("/case-study-4-service-blueprint.png"),
+        imageAfterContentPreserveAspect: true,
         subsections: [
           {
             subheading: "Once the entire journey was mapped, two things became clear",
@@ -606,7 +658,9 @@ const caseStudyData = {
         ],
         additionalContent:
           "We knew we couldn't eliminate every system transition, but we could make them less painful — and more coherent.",
-        hasImage: false,
+        image: withBaseAsset("/case-study-4-approach-repair.png"),
+        imageCaption: "On-site device repair",
+        hasImage: true,
       },
       {
         heading: "One principle unlocked real change",
@@ -623,8 +677,7 @@ const caseStudyData = {
           "One change in particular had a huge effect.\n\nPreviously, if the issue a customer reported during scheduling didn't perfectly match what the technician discovered on arrival, Field app would block the job. The technician couldn't proceed, and the customer had to book a new appointment.\n\nIn reality, technicians often fixed the device anyway using unofficial workarounds — creating downstream issues with inventory tracking and store payments. This stemmed from a misalignment around a business decision made years prior — the Field app team had been told to block the job, the Portal team had been told to allow it to continue.\n\nWe redesigned the flow to allow technicians to continue the job legitimately when issues differed. This removed a major source of friction, improved the customer experience, and eliminated the need for risky workarounds that had been quietly harming the business.",
         quote:
           "What felt like a small fix to technicians required significant internal coordination — and was worth it.",
-        visualNote: "New flow",
-        hasImage: true,
+        hasImage: false,
       },
       {
         eyebrow: "THE RESULTS",
@@ -647,6 +700,10 @@ const caseStudyData = {
         hasImage: false,
       }
     ],
+    /** Add `case-study-4-closing.mp4` to `public/`. Optional: `posterSrc: withBaseAsset("/case-study-4-closing-poster.jpg")`, `caption: "…"`. */
+    closingVideo: {
+      src: withBaseAsset("/case-study-4-closing.mp4"),
+    },
   },
   "5": {
     id: 5,
@@ -1075,9 +1132,12 @@ function HeroFadeLayout({
           additionalContentImageAfterParagraph?: number
           imageBeforeAdditionalContent?: string
           imageBeforeAdditionalContentSrc?: string
+          /** Full width, intrinsic height — no fixed aspect box or object-cover crop */
+          imageBeforeAdditionalContentPreserveAspect?: boolean
           /** Placeholder or image directly after section `content`, before asides/subsections */
           imageAfterContent?: string
           imageAfterContentSrc?: string
+          imageAfterContentPreserveAspect?: boolean
           calloutCards?: Array<{ icon: string; text: string }>
         }>).map((section, i) => (
           <div
@@ -1100,11 +1160,27 @@ function HeroFadeLayout({
 
             {section.imageAfterContent != null && (
               <div className="space-y-2">
-                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                <div
+                  className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${
+                    section.imageAfterContentPreserveAspect ? "" : "aspect-[16/10]"
+                  }`}
+                >
                   {section.imageAfterContentSrc ? (
-                    <img src={section.imageAfterContentSrc} alt="" className="w-full h-full object-cover block" />
+                    <img
+                      src={section.imageAfterContentSrc}
+                      alt=""
+                      className={
+                        section.imageAfterContentPreserveAspect
+                          ? "w-full h-auto max-w-full block"
+                          : "w-full h-full object-cover block"
+                      }
+                    />
                   ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div
+                      className={`w-full flex flex-col items-center justify-center ${
+                        section.imageAfterContentPreserveAspect ? "min-h-[12rem] py-12" : "h-full"
+                      }`}
+                    >
                       <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
                       <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.imageAfterContent}</p>
                     </div>
@@ -1237,11 +1313,27 @@ function HeroFadeLayout({
 
             {section.imageBeforeAdditionalContent && (
               <div className="space-y-2">
-                <div className="rounded-lg overflow-hidden border border-white/10 bg-white/5 aspect-[16/10]">
+                <div
+                  className={`rounded-lg overflow-hidden border border-white/10 bg-white/5 ${
+                    section.imageBeforeAdditionalContentPreserveAspect ? "" : "aspect-[16/10]"
+                  }`}
+                >
                   {section.imageBeforeAdditionalContentSrc ? (
-                    <img src={section.imageBeforeAdditionalContentSrc} alt="" className="w-full h-full object-cover block" />
+                    <img
+                      src={section.imageBeforeAdditionalContentSrc}
+                      alt=""
+                      className={
+                        section.imageBeforeAdditionalContentPreserveAspect
+                          ? "w-full h-auto max-w-full block"
+                          : "w-full h-full object-cover block"
+                      }
+                    />
                   ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div
+                      className={`w-full flex flex-col items-center justify-center ${
+                        section.imageBeforeAdditionalContentPreserveAspect ? "min-h-[12rem] py-12" : "h-full"
+                      }`}
+                    >
                       <span className="font-serif text-9xl text-white/10 mb-4">0{study.id}</span>
                       <p className="text-xs text-white/30 uppercase tracking-wider px-6 text-center">{section.imageBeforeAdditionalContent}</p>
                     </div>
@@ -1423,6 +1515,29 @@ function HeroFadeLayout({
           </div>
         ))}
       </div>
+
+      {"closingVideo" in study && study.closingVideo && study.closingVideo.src && (
+        <div className="px-8 md:px-16 lg:px-24 mt-8 pb-24">
+          <div className="max-w-4xl mx-auto space-y-4">
+            <div className="rounded-lg overflow-hidden border border-white/10 bg-black/40">
+              <ScrollAutoplayVideo
+                src={study.closingVideo.src}
+                className="w-full h-auto block max-h-[85vh]"
+                poster={
+                  "posterSrc" in study.closingVideo && typeof study.closingVideo.posterSrc === "string"
+                    ? study.closingVideo.posterSrc
+                    : undefined
+                }
+              />
+            </div>
+            {"caption" in study.closingVideo &&
+            typeof study.closingVideo.caption === "string" &&
+            study.closingVideo.caption ? (
+              <p className="text-sm text-white/50 text-center">{study.closingVideo.caption}</p>
+            ) : null}
+          </div>
+        </div>
+      )}
 
       {/* Next Case Study Section */}
       {nextStudy && (
