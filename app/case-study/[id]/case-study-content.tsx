@@ -71,6 +71,18 @@ const CASE_STUDY_6_USE_PLACEHOLDER_PAGE = true
  */
 const CASE_STUDY_5_NEXT_TARGETS_CASE_STUDY_1 = true
 
+/**
+ * Case study 5 — section visuals are off until real assets exist. To restore images:
+ * 1. Add files under `public/` (e.g. `evenstride-*.png`).
+ * 2. On each section below, set `hasImage: true`, `image: withBaseAsset('...')`, and optionally `imageCaption`.
+ *
+ * Suggested mapping (previous placeholder captions):
+ * - "Rehab plans were simple on paper..." → Early sketches or text-based rehab plan screenshot
+ * - "An app made sense because..." → Early app screens (builder or execution)
+ * - "Designing by building helped me..." → Rough early build vs refined iterations
+ * - "What's working so far..." → Annotated screenshot (workaround vs future Watch direction)
+ */
+
 /*
  * --- Restore full case study 6 (when you’re ready) ---
  * 1. Set CASE_STUDY_6_USE_PLACEHOLDER_PAGE to false above.
@@ -673,8 +685,7 @@ const caseStudyData = {
         heading: "Rehab plans were simple on paper and hard in real life",
         content: "Horse rehabilitation plans often look straightforward. Walk for a certain number of minutes. Add a small amount of trot each week. Progress slowly over months.",
         additionalContent: "In practice, they're surprisingly hard to follow. When you're in the middle of a long rehab cycle, it's easy to forget details like whether this week calls for ten minutes of walk and two minutes of trot, or fifteen minutes and one. The cognitive overhead adds up — especially when you're trying to do right by an animal whose recovery depends on consistency. This wasn't an abstract problem. It was one I was living through, alongside other members of my barn community.",
-        visualNote: "Early sketches or a simple text-based rehab plan screenshot, to ground the problem",
-        hasImage: true,
+        hasImage: false,
       },
       {
         heading: "The goal wasn't speed, it was confidence",
@@ -686,8 +697,7 @@ const caseStudyData = {
         heading: "An app made sense because this had to work while riding",
         content: "I chose to build this as an iOS app for two reasons.",
         additionalContent: "First, I wanted to push myself to learn how to build a functioning app through vibe coding, rather than stopping at a prototype. Second, this experience needed to work in motion. When you're riding, you can't stop to check a screen every few minutes. That meant the experience had to rely on sound, haptics, or simple cues to guide gait changes — similar to human interval training apps, but adapted for equine rehab. There weren't existing tools in the market that did this well, and none built specifically for horses.",
-        visualNote: "Early app screens showing the rehab plan builder or execution mode",
-        hasImage: true,
+        hasImage: false,
       },
       {
         heading: "Choosing constraints on purpose",
@@ -700,15 +710,13 @@ const caseStudyData = {
         content: "I chose to vibe code this project using Cursor and Xcode, with Figma as a supporting tool rather than the primary output.",
         additionalContent: "Most of my professional work involves iterating on existing systems. Starting from zero can be intimidating. Using AI to help generate a rough first version made it easier to get unstuck. Even when the first attempt failed completely — which it did — having something tangible made it easier to regroup and try again. Once a basic version existed, I could fall back into familiar territory: refining interactions, improving hierarchy, and polishing the experience.",
         quote: "The first version didn't need to be good. It just needed to exist.",
-        visualNote: "Rough early build screenshots next to more refined iterations",
-        hasImage: true,
+        hasImage: false,
       },
       {
         heading: "What's working so far, and what's still unresolved",
         content: "The current version supports building a rehab plan and guiding its execution, with push notifications used as a workaround for gait changes. Those notifications can surface on Apple Watch if enabled, which helps, but isn't as integrated as I'd like.",
         additionalContent: "The biggest unresolved piece is a proper Apple Watch companion app. That was the original vision — using haptics and simple visuals to guide riders without requiring a phone. My first attempt at this failed due to complexity, so for now I've focused on stabilizing the core iOS experience. This is still very much a work in progress.",
-        visualNote: "Annotated screenshot noting \"current workaround\" vs \"future direction\"",
-        hasImage: true,
+        hasImage: false,
       },
       {
         heading: "Success, for now, is personal",
